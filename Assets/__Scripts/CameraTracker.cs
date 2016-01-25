@@ -5,6 +5,8 @@ public class CameraTracker : MonoBehaviour {
 
 	public GameObject player;
 
+	private Vector3 velocity = Vector3.down;
+
 	private Vector3 playerPos;									// Store the first position of the player
 	private Vector3 playerPosNext;								// Store the second position of the player when it lands on the cube.
 	private float distanceY;									// Store the distance of playerPos and PlayerPosNext (The distance the camera moves)
@@ -37,21 +39,41 @@ public class CameraTracker : MonoBehaviour {
     	playerStartPos = player.transform.position;				// Get the postion of the player when the game just starts
 	}
 
-	void FixedUpdate()
+//	void FixedUpdate()
+//	{
+//		if(cam)
+//		{
+//			transform.position = transform.position + new Vector3(0f,Time.deltaTime * -1f * camSpeed , 0f);         // move the camera
+//			startTime += Time.deltaTime * camSpeed;																	// The distance the camera has moved
+//			if(startTime >= distanceY)																				// Condition to stop the camera, the distance to move
+//			{	
+//				cam = false;
+//				startTime = 0;
+//
+//			}
+//		}
+//	}
+//
+
+//	void FixedUpdate()
+//	{
+//		if(cam)
+//		{
+//			transform.position = Vector3.Lerp(transform.position,(transform.position + new Vector3(transform.position.x, -1f,0f)), Time.deltaTime * 2);
+//		}
+//	}
+
+
+
+	void Update()
 	{
 		if(cam)
 		{
-			transform.position = transform.position + new Vector3(0f,Time.deltaTime * -1f * camSpeed , 0f);         // move the camera
-			startTime += Time.deltaTime * camSpeed;																	// The distance the camera has moved
-			if(startTime >= distanceY)																				// Condition to stop the camera
-			{
-				cam = false;
-				startTime = 0;
 
-			}
+			//Using SmoothDamp to move the camera smoothly
+			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, playerPosNext.y, transform.position.z), ref velocity , .3f);
 		}
 	}
-
 
 
 	//

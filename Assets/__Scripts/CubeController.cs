@@ -17,7 +17,7 @@ public class CubeController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);					//shoot a ray form the camera to a mouse position in the world
 
 		// Debug.DrawRay(ray1.origin, ray1.direction * 100, Color.green);               //Draw a ray to debug
