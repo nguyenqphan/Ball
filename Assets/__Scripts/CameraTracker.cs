@@ -53,6 +53,7 @@ public class CameraTracker : MonoBehaviour {
 	}
 
 
+
 	//
 	void PlayerLand(GameObject player1) 
 	{
@@ -60,7 +61,7 @@ public class CameraTracker : MonoBehaviour {
 		playerPosNext = player.transform.position;																	// 
 		distanceY = Vector3.Distance(new Vector3(0f, playerStartPos.y, 0f), new Vector3(0f, playerPosNext.y, 0f )); //
 		playerStartPos = playerPosNext;
-		//Debug.Log(distanceY + " is the distance in y");
+		Debug.Log(distanceY + " is the distance in y");
 	
 	}
 

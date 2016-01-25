@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CamMoveEvent : MonoBehaviour {
 
-	public GameObject player;
+	//public GameObject player;
 
 	public delegate void CamMoveAction(GameObject player);
 	public static event CamMoveAction OnCamMove;

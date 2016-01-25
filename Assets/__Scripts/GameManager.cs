@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager> {
 
 	private float maxTime = 5f * 60f;
 
-	public GameObject cube;
+	private GameObject cube;
 
 
 	void OnEnable()
