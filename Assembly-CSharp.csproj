@@ -48,10 +48,12 @@
      <Compile Include="Assets\__Scripts\CamMoveEvent.cs" />
      <Compile Include="Assets\__Scripts\CameraTracker.cs" />
      <Compile Include="Assets\__Scripts\CubeController.cs" />
+     <Compile Include="Assets\__Scripts\CubeEvent.cs" />
      <Compile Include="Assets\__Scripts\Diamond.cs" />
      <Compile Include="Assets\__Scripts\GameManager.cs" />
      <Compile Include="Assets\__Scripts\Notes\Ideas.cs" />
      <Compile Include="Assets\__Scripts\Singleton.cs" />
+     <Compile Include="Assets\__Scripts\SpawnerManager.cs" />
      <Compile Include="Assets\__Scripts\TestingScripts\EventListenerTest.cs" />
      <Compile Include="Assets\__Scripts\TestingScripts\GravityTest.cs" />
      <Compile Include="Assets\__Scripts\TestingScripts\TranPosTest.cs" />

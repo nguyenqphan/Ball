@@ -76,6 +76,7 @@ public class CameraTracker : MonoBehaviour {
 	}
 
 
+
 	//
 	void PlayerLand(GameObject player1) 
 	{
