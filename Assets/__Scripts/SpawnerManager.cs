@@ -3,14 +3,13 @@ using System.Collections;
 
 public class SpawnerManager : MonoBehaviour {
 
-	public GameObject cubeToInstantiate;
-
+	public GameObject[] cubeToInstantiate;
+	private int indexSwitch = 1;
+	private Vector3 leftOffset;
+	private Vector3 rightOeffet;
 
 	void OnEnable()
 	{
-//		CamMoveEvent.OnCamMove += PlayerLand;
-//		CamMoveEvent.OnPlayerLeft += PlayerLeft;
-
 		CubeEvent.OnPlayerEnter += StartSpawnCube;
 	}
 
@@ -27,23 +26,24 @@ public class SpawnerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetButtonDown("Fire2"))
-		{
-			StartSpawnCube();
-		}
-	
 	}
 
 	public IEnumerator InstantiateCube()
 	{
-		Instantiate(cubeToInstantiate, new Vector3(2.5f, -4.5f, 0f), Quaternion.identity);
+		Instantiate(cubeToInstantiate[indexSwitch], new Vector3(0f, -4.5f, 0f), Quaternion.identity);
 
 		yield return 0;
 	}
 
 	public void StartSpawnCube()
 	{
+		if(indexSwitch == 1)
+			indexSwitch = 0;
+		else if(indexSwitch == 0)
+			indexSwitch = 1;
 		StartCoroutine(InstantiateCube());	
 	}
+
+
 	
 }

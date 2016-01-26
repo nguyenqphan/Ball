@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* Attach this script to the cube so that it can detect collision and enable an event.
+ * The event will be executed in the SpawnerManager Script
+*/
+
 public class CubeEvent : MonoBehaviour {
 
 	public delegate void CubeAction();
