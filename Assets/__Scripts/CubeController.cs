@@ -5,7 +5,7 @@ public class CubeController : MonoBehaviour {
 
 	public float rotateSpeed = 30f;                    // The speed of cube rotation
 	private float startTime = 0;					  // Stop the rotation after a specific time
-	private LayerMask cube = -1;					  // Layer of the cube	
+	public LayerMask cube = -1;					  // Layer of the cube	
 	private bool rotating = false;                    // stop or continue the rotation
 
 	private RaycastHit hit;                           // Store the hit object's properties
@@ -26,8 +26,9 @@ public class CubeController : MonoBehaviour {
 
 			if(Input.GetButtonDown("Fire1")){												//Check if left mouse is clicked
 
-				if(Physics.Raycast(ray, out hit, 100, cube))								//Check if the Raycast hit any cube in 100 unit from the camera
+				if(Physics.Raycast(ray, out hit, 100, cube.value))								//Check if the Raycast hit any cube in 100 unit from the camera
 				{
+					Debug.Log(cube + "is the layermask value");
 					rotating = true;														//set rotating equal true, so that we can rotate the cube
 					Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 2f);          //Debug
 
@@ -47,7 +48,7 @@ public class CubeController : MonoBehaviour {
 			hit.transform.Rotate(transform.forward * dirToRotate, Time.deltaTime * rotateSpeed, Space.World);         //rotate the cube
 			startTime += Time.deltaTime  * rotateSpeed;	
 
-			Debug.Log(startTime + " is the rotate degree");
+			//Debug.Log(startTime + " is the rotate degree");
 
 			//the degree to rotate
 			if(startTime >= 30)																					  //condition to stop the rotation of the cube

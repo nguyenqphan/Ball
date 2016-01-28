@@ -46,8 +46,10 @@ public class GameManager : Singleton<GameManager> {
 		TimeRemaining -= Time.deltaTime;
 		 if(TimeRemaining <= 0)
 		{
-			Application.LoadLevel(Application.loadedLevel);
+			//Application.LoadLevel(Application.loadedLevel);
+
 			TimeRemaining = maxTime;
+			Application.Quit();
 		}
 	}
 }

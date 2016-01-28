@@ -3,11 +3,11 @@ using System.Collections;
 
 public class GravityTest : MonoBehaviour {
 
-	private Rigidbody rig;
+   //private Rigidbody rig;
 
 	// Use this for initialization
 	void Start () {
-		rig = GetComponent<Rigidbody>();
+	//	rig = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame

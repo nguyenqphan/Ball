@@ -15,9 +15,9 @@ public class CameraTracker : MonoBehaviour {
 	private Vector3 offset;										
 	private Vector3 playerStartPos;
 	private bool cam = false;                     				// A flag whether or not to allow the camera to move.
-	private float distanceMove = 1f;							
-	private float startTime = 0f;								// The degree in which the camera rotates
-	private float camSpeed = 5f;								// Speed of camera
+//	private float distanceMove = 1f;							
+//	private float startTime = 0f;								// The degree in which the camera rotates
+//	private float camSpeed = 5f;								// Speed of camera
 
 
 	void OnEnable()
@@ -84,7 +84,7 @@ public class CameraTracker : MonoBehaviour {
 		playerPosNext = player.transform.position;																	// 
 		distanceY = Vector3.Distance(new Vector3(0f, playerStartPos.y, 0f), new Vector3(0f, playerPosNext.y, 0f )); //
 		playerStartPos = playerPosNext;
-		Debug.Log(distanceY + " is the distance in y");
+		//Debug.Log(distanceY + " is the distance in y");
 	
 	}
 

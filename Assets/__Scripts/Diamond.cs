@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Diamond : MonoBehaviour {
 	
-	[SerializeField]
-	private float rotateSpeed = 1.0f; // In rotations per second
+//	[SerializeField]
+//	private float rotateSpeed = 1.0f; // In rotations per second
 	
 	[SerializeField]
 	private float floatSpeed = 0.5f; // In cycles (up and down) per second
