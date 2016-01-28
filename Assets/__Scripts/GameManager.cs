@@ -35,11 +35,6 @@ public class GameManager : Singleton<GameManager> {
 
 
 
-	void Awake()
-	{
-
-	}
-
 	// Use this for initialization
 	void Start () {
 		TimeRemaining = maxTime;

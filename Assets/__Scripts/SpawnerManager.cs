@@ -8,14 +8,16 @@ public class SpawnerManager : MonoBehaviour {
 	private Vector3 leftOffset;
 	private Vector3 rightOeffet;
 
+	private float fixedY = 0f;
+
 	void OnEnable()
 	{
-		CubeEvent.OnPlayerEnter += StartSpawnCube;
+		EventManager.OnPlayerEnter += StartSpawnCube;
 	}
 
 	void OnDisable()
 	{
-		CubeEvent.OnPlayerEnter -= StartSpawnCube;
+		EventManager.OnPlayerEnter -= StartSpawnCube;
 	}
 
 	// Use this for initialization
@@ -30,9 +32,11 @@ public class SpawnerManager : MonoBehaviour {
 
 	public IEnumerator InstantiateCube()
 	{
+		fixedY += -4.5f;
+
 		Instantiate(cubeToInstantiate[indexSwitch], new Vector3(0f, -4.5f, 0f), Quaternion.identity);
 
-		yield return 0;
+		yield return 2;
 	}
 
 	public void StartSpawnCube()
@@ -42,6 +46,7 @@ public class SpawnerManager : MonoBehaviour {
 		else if(indexSwitch == 0)
 			indexSwitch = 1;
 		StartCoroutine(InstantiateCube());	
+		//StopCoroutine(InstantiateCube());
 	}
 
 

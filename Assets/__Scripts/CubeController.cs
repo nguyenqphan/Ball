@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CubeController : MonoBehaviour {
 
-	public float rotateSpeed = 1f;                    // The speed of cube rotation
+	public float rotateSpeed = 30f;                    // The speed of cube rotation
 	private float startTime = 0;					  // Stop the rotation after a specific time
 	private LayerMask cube = -1;					  // Layer of the cube	
 	private bool rotating = false;                    // stop or continue the rotation
@@ -45,7 +45,11 @@ public class CubeController : MonoBehaviour {
 		if(rotating == true)
 		{
 			hit.transform.Rotate(transform.forward * dirToRotate, Time.deltaTime * rotateSpeed, Space.World);         //rotate the cube
-			startTime += Time.deltaTime  * rotateSpeed;															  //the degree to rotate
+			startTime += Time.deltaTime  * rotateSpeed;	
+
+			Debug.Log(startTime + " is the rotate degree");
+
+			//the degree to rotate
 			if(startTime >= 30)																					  //condition to stop the rotation of the cube
 			{
 				rotating = false;																				  

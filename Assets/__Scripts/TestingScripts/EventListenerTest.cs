@@ -4,12 +4,12 @@ using System.Collections;
 public class EventListenerTest : MonoBehaviour {
 
 	void OnEnable(){
-		CamMoveEvent.OnCamMove += ResponseToEvent;
+		EventManager.OnCamMove += ResponseToEvent;
 	}
 
 	void OnDisable()
 	{
-		CamMoveEvent.OnCamMove -= ResponseToEvent;
+		EventManager.OnCamMove -= ResponseToEvent;
 	}
 
 	// Use this for initialization
@@ -17,9 +17,9 @@ public class EventListenerTest : MonoBehaviour {
 	
 	}
 
-	void ResponseToEvent(GameObject player)
+	void ResponseToEvent()
 	{
-		Debug.Log("Event is trigger From nowhere");
+		Debug.Log("Event is trigger From EventListenerTest");
 	}
 	
 	// Update is called once per frame

@@ -22,14 +22,14 @@ public class CameraTracker : MonoBehaviour {
 
 	void OnEnable()
 	{
-		CamMoveEvent.OnCamMove += PlayerLand;
-		CamMoveEvent.OnPlayerLeft += PlayerLeft;
+		EventManager.OnCamMove += PlayerLand;
+		EventManager.OnPlayerLeft += PlayerLeft;
 	}
 
 	void OnDisable()
 	{
-		CamMoveEvent.OnCamMove -= PlayerLand;					// Listen to an event action to trigger PlayerLand function
-		CamMoveEvent.OnPlayerLeft -= PlayerLeft;                // Listten to an event action to trigger PlayerLeft function 
+		EventManager.OnCamMove -= PlayerLand;					// Listen to an event action to trigger PlayerLand function
+		EventManager.OnPlayerLeft -= PlayerLeft;                // Listten to an event action to trigger PlayerLeft function 
 
 	}
 
@@ -65,7 +65,7 @@ public class CameraTracker : MonoBehaviour {
 
 
 
-	void Update()
+	void FixedUpdate()
 	{
 		if(cam)
 		{
@@ -78,7 +78,7 @@ public class CameraTracker : MonoBehaviour {
 
 
 	//
-	void PlayerLand(GameObject player1) 
+	void PlayerLand() 
 	{
 		cam = true;
 		playerPosNext = player.transform.position;																	// 
@@ -88,7 +88,7 @@ public class CameraTracker : MonoBehaviour {
 	
 	}
 
-	void PlayerLeft(GameObject player)
+	void PlayerLeft()
 	{
 		cam = false;
 	}
