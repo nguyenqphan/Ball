@@ -26,7 +26,10 @@ public class EventManager : MonoBehaviour {
 			}
 			if(OnPlayerEnter != null)
 			{
+				//Debug.Log(collider.gameObject.tag + " is triggered");
+				//Debug.Log(gameObject + " is the trigger target");
 				OnPlayerEnter();
+
 			}
 		}
 	}

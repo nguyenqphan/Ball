@@ -12,11 +12,16 @@ public class SpawnerManager : MonoBehaviour {
 
 	void OnEnable()
 	{
+
+		Debug.Log("Enable OnplayerEnter");
 		EventManager.OnPlayerEnter += StartSpawnCube;
+		//EventManager.OnPlayerEnter += StartSpawnCube;
+		//EventManager.OnPlayerEnter += StartSpawnCube;
 	}
 
 	void OnDisable()
 	{
+		Debug.Log("Disable OnPlayerEnter");
 		EventManager.OnPlayerEnter -= StartSpawnCube;
 	}
 
@@ -34,9 +39,13 @@ public class SpawnerManager : MonoBehaviour {
 	{
 		fixedY += -4.5f;
 
-		Instantiate(cubeToInstantiate[indexSwitch], new Vector3(0f, -4.5f, 0f), Quaternion.identity);
+		Instantiate(cubeToInstantiate[indexSwitch], new Vector3(0f, fixedY, 0f), Quaternion.identity);
 
-		yield return 2;
+		yield return 0;
+
+		StopCoroutine("InstantiateCube");
+		Debug.Log("I just stopped the coroutine");
+
 	}
 
 	public void StartSpawnCube()
@@ -45,8 +54,9 @@ public class SpawnerManager : MonoBehaviour {
 			indexSwitch = 0;
 		else if(indexSwitch == 0)
 			indexSwitch = 1;
-		StartCoroutine(InstantiateCube());	
-		//StopCoroutine(InstantiateCube());
+		
+		StartCoroutine("InstantiateCube");	
+		//StopCoroutine("InstantiateCube");
 	}
 
 
