@@ -67,12 +67,12 @@ public class CameraTracker : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		if(cam)
-		{
-
-			//Using SmoothDamp to move the camera smoothly
-			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, playerPosNext.y, transform.position.z), ref velocity , .3f);
-		}
+//		if(cam)
+//		{
+//
+//			//Using SmoothDamp to move the camera smoothly
+//			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, playerPosNext.y, transform.position.z), ref velocity , .3f);
+//		}
 	}
 
 
@@ -85,6 +85,25 @@ public class CameraTracker : MonoBehaviour {
 		distanceY = Vector3.Distance(new Vector3(0f, playerStartPos.y, 0f), new Vector3(0f, playerPosNext.y, 0f )); //
 		playerStartPos = playerPosNext;
 		//Debug.Log(distanceY + " is the distance in y");
+		MoveCamera();
+	
+	}
+
+	public void MoveCamera()
+	{
+		
+		StartCoroutine(CameraToMove());
+	}
+
+	IEnumerator CameraToMove()
+	{
+		yield return new WaitForSeconds(1f);
+
+		while(cam)
+		{
+			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, playerPosNext.y, transform.position.z), ref velocity , .3f);
+			yield return 0;
+		}
 	
 	}
 
