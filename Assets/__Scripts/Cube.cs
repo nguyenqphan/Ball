@@ -6,6 +6,7 @@ public class Cube : MonoBehaviour {
 	private float rotateSpeed = 30f;					//rotation of the cube
 	private bool isRotating = true;
 	private float startTime;
+	private float movingSpeed = 20f;
 
 	// Use this for initialization
 	void Start () {
@@ -43,4 +44,24 @@ public class Cube : MonoBehaviour {
 			yield return 0;
 		}
 	}
+
+	public void MoveCube(Vector3 targetPos)
+	{
+		StartCoroutine(StartToMove(targetPos));
+	}
+
+	public IEnumerator StartToMove(Vector3 targetPos)
+	{
+		while (transform.position != targetPos) {
+			transform.position = Vector3.MoveTowards (transform.position, targetPos, movingSpeed * Time.deltaTime);
+
+			yield return 0;
+			Debug.Log("Im still moving");
+		}
+	}
+
+//	public IEnumerator ChangePosition(Vector3 currentPos, Vector3 targetPos)
+//	{
+//		//transform.position = Vector3.MoveTowards();
+//	}
 }

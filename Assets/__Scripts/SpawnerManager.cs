@@ -9,11 +9,12 @@ public class SpawnerManager : MonoBehaviour {
 	private Vector3 rightOeffet;
 
 	private float fixedY = 0f;
+	private float fixedX;
 
 	void OnEnable()
 	{
 
-		Debug.Log("Enable OnplayerEnter");
+		//Debug.Log("Enable OnplayerEnter");
 		EventManager.OnPlayerEnter += StartSpawnCube;
 		//EventManager.OnPlayerEnter += StartSpawnCube;
 		//EventManager.OnPlayerEnter += StartSpawnCube;
@@ -21,7 +22,7 @@ public class SpawnerManager : MonoBehaviour {
 
 	void OnDisable()
 	{
-		Debug.Log("Disable OnPlayerEnter");
+		//Debug.Log("Disable OnPlayerEnter");
 		EventManager.OnPlayerEnter -= StartSpawnCube;
 	}
 
@@ -35,29 +36,59 @@ public class SpawnerManager : MonoBehaviour {
 
 	}
 
-	public IEnumerator InstantiateCube()
-	{
-		fixedY += -4.5f;
+//	private IEnumerator InstantiateCube()
+//	{
+//		//fixedY += -4.5f;
+//
+//		GameObject newCube = Instantiate(cubeToInstantiate[indexSwitch], transform.position, Quaternion.identity) as GameObject;
+//
+//		yield return 0;
+//	}
+//
 
-		Instantiate(cubeToInstantiate[indexSwitch], new Vector3(0f, fixedY, 0f), Quaternion.identity);
-
-		yield return 0;
-
-		StopCoroutine("InstantiateCube");
-		Debug.Log("I just stopped the coroutine");
-
-	}
 
 	public void StartSpawnCube()
 	{
-		if(indexSwitch == 1)
+		if(indexSwitch == 1){
 			indexSwitch = 0;
-		else if(indexSwitch == 0)
+			fixedX = 2.5f;
+		}else { if(indexSwitch == 0)
 			indexSwitch = 1;
-		
-		StartCoroutine("InstantiateCube");	
-		//StopCoroutine("InstantiateCube");
+			fixedX = -2.5f;
+		}
+
+		GameObject newCube = Instantiate(cubeToInstantiate[indexSwitch], transform.position, Quaternion.identity) as GameObject;
+		Cube cube = newCube.GetComponent<Cube>();
+		cube.MoveCube(targetPosition());
 	}
+
+	Vector3 targetPosition(){
+		fixedY += -4.5f;
+		return new Vector3(fixedX, fixedY, 0f);
+	}
+
+//	private IEnumerator InstantiateCube()
+//	{
+//		fixedY += -4.5f;
+//
+//		Instantiate(cubeToInstantiate[indexSwitch], new Vector3(fixedX, fixedY, 0f), Quaternion.identity);
+//
+//		yield return 0;
+//	}
+//
+//
+//
+//	public void StartSpawnCube()
+//	{
+//		if(indexSwitch == 1){
+//			indexSwitch = 0;
+//			fixedX = 2.5f;
+//		}else { if(indexSwitch == 0)
+//			indexSwitch = 1;
+//			fixedX = -2.5f;
+//		}
+//		StartCoroutine(InstantiateCube());
+//	}
 
 
 	
