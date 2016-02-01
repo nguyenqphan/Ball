@@ -8,26 +8,11 @@ public class Cube : MonoBehaviour {
 	private float startTime;
 	private float movingSpeed = 20f;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-//		if(Input.GetButtonDown("Fire2"))
-//		{
-//			RotateCube(-1f);
-//		}
-	}
-
 	public void RotateCube(float dirToRotate)
 	{
 		StopAllCoroutines();
-		//StopCoroutine("StartToRotate");
 		startTime = 0;
 		StartCoroutine(StartToRotate(dirToRotate));
-		//StartCoroutine("StartToRotate");
 	
 	}
 
@@ -36,8 +21,6 @@ public class Cube : MonoBehaviour {
 		while (isRotating) {
 			transform.Rotate (transform.forward * dirToRotate, Time.deltaTime * rotateSpeed, Space.World);         //rotate the cube
 			startTime += Time.deltaTime * rotateSpeed;	
-				
-			//Debug.Log(startTime + " is the rotate degree");
 				
 			//the degree to rotate
 			if (startTime >= 30) {																					  //condition to stop the rotation of the cube
@@ -79,8 +62,4 @@ public class Cube : MonoBehaviour {
 		}
 	}
 
-//	public IEnumerator ChangePosition(Vector3 currentPos, Vector3 targetPos)
-//	{
-//		//transform.position = Vector3.MoveTowards();
-//	}
 }
