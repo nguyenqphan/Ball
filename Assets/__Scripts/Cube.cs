@@ -62,4 +62,11 @@ public class Cube : MonoBehaviour {
 		}
 	}
 
+//	public void Deactivate()
+//	{
+//		gameObject.SetActive(false);
+//	}
+
+	
+
 }

@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnerManager : MonoBehaviour {
 	
 
-	public GameObject[] cubeToInstantiate;
+	public GameObject cubeToInstantiate;
+
+	private List<GameObject> cubeList;
+	private int pooledAmount = 5;
+
 	private int indexSwitch = 0;
 	private Vector3 leftOffset;
 	private Vector3 rightOeffet;
@@ -23,6 +28,17 @@ public class SpawnerManager : MonoBehaviour {
 		EventManager.OnPlayerEnter -= StartSpawnCube;
 	}
 		
+	void Start()
+	{
+		cubeList = new List<GameObject>();
+		for(int i = 0; i < pooledAmount; i++)
+		{
+			GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
+			newCube.SetActive(false);
+			cubeList.Add(newCube);
+		}
+	}
+
 	public void StartSpawnCube()
 	{
 		if(indexSwitch == 1){
@@ -41,18 +57,42 @@ public class SpawnerManager : MonoBehaviour {
 		return new Vector3(fixedX, fixedY, 0f);
 	}
 
+//	private IEnumerator InstantiateCube()
+//	{
+//
+//		yield return new WaitForSeconds(3f);
+//
+//		GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
+//		Cube cube = newCube.GetComponent<Cube>();
+//		cube.MoveCube(targetPosition());
+//
+//		yield return 0;
+//	}
+
 	private IEnumerator InstantiateCube()
 	{
-
+	
 		yield return new WaitForSeconds(3f);
+			
+		for(int i =0; i < cubeList.Count; i++)
+		{
+			if(!cubeList[i].activeInHierarchy)
+			{
+				cubeList[i].SetActive(true);
+				Cube cube = cubeList[i].GetComponent<Cube>();
+				cube.MoveCube(targetPosition());
+				break;
+			}
+		}
 
-		GameObject newCube = Instantiate(cubeToInstantiate[indexSwitch], transform.position, Quaternion.identity) as GameObject;
-		Cube cube = newCube.GetComponent<Cube>();
-		cube.MoveCube(targetPosition());
-
-		yield return 0;
+		//Cube cube = cubeList[i].GetComponent<Cube>();
+	
+			//GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
+			//Cube cube = newCube.GetComponent<Cube>();
+		//	cube.MoveCube(targetPosition());
+	
+			yield return 0;
 	}
 
 
-	
 }
