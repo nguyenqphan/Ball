@@ -14,7 +14,7 @@ public class SpawnerManager : MonoBehaviour {
 	private Vector3 leftOffset;
 	private Vector3 rightOeffet;
 
-	private float fixedY = 0f;
+	private float fixedY = 2f;
 	private float fixedX;
 
 	void OnEnable()
@@ -53,7 +53,7 @@ public class SpawnerManager : MonoBehaviour {
 	}
 
 	Vector3 targetPosition(){
-		fixedY += -3.5f;
+		fixedY += -5.5f;
 		return new Vector3(fixedX, fixedY, 0f);
 	}
 

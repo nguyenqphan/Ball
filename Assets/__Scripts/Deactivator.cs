@@ -19,7 +19,7 @@ public class Deactivator : MonoBehaviour {
 		if(gameObject.activeInHierarchy)
 		{
 			resetTime += Time.deltaTime * time;
-			if(resetTime >= 10f)
+			if(resetTime >= 12f)
 			{
 				gameObject.SetActive(false);
 				resetTime = 0f;
