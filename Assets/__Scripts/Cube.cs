@@ -24,9 +24,10 @@ public class Cube : MonoBehaviour {
 	public void RotateCube(float dirToRotate)
 	{
 		StopAllCoroutines();
+		//StopCoroutine("StartToRotate");
 		startTime = 0;
 		StartCoroutine(StartToRotate(dirToRotate));
-
+		//StartCoroutine("StartToRotate");
 	
 	}
 
