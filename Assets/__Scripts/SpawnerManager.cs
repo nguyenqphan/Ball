@@ -78,6 +78,8 @@ public class SpawnerManager : MonoBehaviour {
 		{
 			if(!cubeList[i].activeInHierarchy)
 			{
+				cubeList[i].transform.position = transform.transform.position;
+				cubeList[i].transform.rotation = transform.transform.rotation;
 				cubeList[i].SetActive(true);
 				Cube cube = cubeList[i].GetComponent<Cube>();
 				cube.MoveCube(targetPosition());
