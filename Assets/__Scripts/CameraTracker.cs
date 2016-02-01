@@ -97,13 +97,13 @@ public class CameraTracker : MonoBehaviour {
 
 	IEnumerator CameraToMove()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(2f);
 		var distanceToMove = transform.position.y - distanceY;
 
 		while(cam)
 		{
 			//transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, playerPosNext.y, transform.position.z), ref velocity , .3f);
-			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, distanceToMove, transform.position.z), ref velocity , .2f);
+			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, distanceToMove, transform.position.z), ref velocity , .4f);
 
 			yield return 0;
 		}

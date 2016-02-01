@@ -59,11 +59,23 @@ public class Cube : MonoBehaviour {
 
 	public IEnumerator StartToMove(Vector3 targetPos)
 	{
+		BoxCollider[] boxes = gameObject.GetComponentsInChildren<BoxCollider>();		//Get all BoxColliders in ComboCube				
+		foreach(BoxCollider box in boxes)
+		{
+			//Debug.Log(box.gameObject);
+			box.enabled = false;														//Disalble all Boxcolliders when the ComboCube moves
+		}
+	
 		while (transform.position != targetPos) {
 			transform.position = Vector3.MoveTowards (transform.position, targetPos, movingSpeed * Time.deltaTime);
 
 			yield return 0;
 //			Debug.Log("Im still moving");
+		}
+
+		foreach(BoxCollider box in boxes)
+		{
+			box.enabled = true;															//Enable all BoxColliders in ComboCube after the cube reaches target position
 		}
 	}
 
