@@ -21,7 +21,11 @@ public class CubeManager : MonoBehaviour {
 
 			if(Physics.Raycast(ray, out hit, 100f, cubeLayerMask))
 			{
-				Cube cube = hit.collider.GetComponent<Cube>();
+				//GameObject parent = hit.collider.GetComponentInParent<GameObject>();
+				//Debug.Log(parent);
+				Cube cube = hit.collider.GetComponentInParent<Cube>();
+				//Cube cube = hit.collider.GetComponentInParent<Cube>().RotateCube(1f);
+				//Debug.Log(cube.GetComponentInParent<Cube>().RotateCube(1f));
 				if(hit.collider.tag == "RightCube")
 					cube.RotateCube(1f);
 				else if(hit.collider.tag == "LeftCube")

@@ -23,7 +23,11 @@ public class Cube : MonoBehaviour {
 
 	public void RotateCube(float dirToRotate)
 	{
+		StopAllCoroutines();
+		startTime = 0;
 		StartCoroutine(StartToRotate(dirToRotate));
+
+	
 	}
 
 	public IEnumerator StartToRotate(float dirToRotate)
@@ -43,6 +47,8 @@ public class Cube : MonoBehaviour {
 				
 			yield return 0;
 		}
+
+		isRotating = !isRotating;
 	}
 
 	public void MoveCube(Vector3 targetPos)
@@ -56,7 +62,7 @@ public class Cube : MonoBehaviour {
 			transform.position = Vector3.MoveTowards (transform.position, targetPos, movingSpeed * Time.deltaTime);
 
 			yield return 0;
-			Debug.Log("Im still moving");
+//			Debug.Log("Im still moving");
 		}
 	}
 
