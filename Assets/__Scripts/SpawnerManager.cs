@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class SpawnerManager : MonoBehaviour {
 	
-
 	public GameObject cubeToInstantiate;
 
 	private List<GameObject> cubeList;
@@ -53,10 +52,19 @@ public class SpawnerManager : MonoBehaviour {
 	}
 
 	Vector3 targetPosition(){
-		fixedY += -5.5f;
+		fixedY += -randomFixedY();
 		return new Vector3(fixedX, fixedY, 0f);
 	}
 
+	int randomFixedY()
+	{
+		return Random.Range(5, 10);
+	}
+
+	float randonDegree()
+	{
+		return Random.Range(-30f, 30f);;
+	}
 //	private IEnumerator InstantiateCube()
 //	{
 //
@@ -78,8 +86,8 @@ public class SpawnerManager : MonoBehaviour {
 		{
 			if(!cubeList[i].activeInHierarchy)
 			{
-				cubeList[i].transform.position = transform.transform.position;
-				cubeList[i].transform.rotation = transform.transform.rotation;
+				cubeList[i].transform.position = transform.position;
+				cubeList[i].transform.rotation = Quaternion.Euler(0f, 0f, randonDegree());
 				cubeList[i].SetActive(true);
 				Cube cube = cubeList[i].GetComponent<Cube>();
 				cube.MoveCube(targetPosition());

@@ -13,7 +13,7 @@ public class SkyboxMaterials : MonoBehaviour {
 	}
 	void Start () 
 	{
-		skybox.material = materials[4];	
+		skybox.material = materials[randomIndex()];	
 
 	}
 	
