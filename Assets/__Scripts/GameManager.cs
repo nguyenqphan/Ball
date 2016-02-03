@@ -20,6 +20,13 @@ public class GameManager : Singleton<GameManager> {
 
 	private float maxTime = 5f * 60f;
 
+	private int indexMaterial;
+
+	public int IndexMaterial{
+		get{return indexMaterial = Random.Range(0, 11);}
+		set{indexMaterial = value;}
+	}
+
 	private GameObject cube;
 
 
