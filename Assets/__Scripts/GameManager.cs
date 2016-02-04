@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
 
@@ -11,7 +12,8 @@ public class GameManager : Singleton<GameManager> {
 		set{_timeRemaining = value;}
 	}
 
-	private int numCoins = 0;
+	private int numCoins;
+	private int startCoints = 0;
 
 	public int NumCoins{
 		get{return numCoins;}
@@ -43,8 +45,9 @@ public class GameManager : Singleton<GameManager> {
 
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		TimeRemaining = maxTime;
+		NumCoins = startCoints;
 	}
 	
 	// Update is called once per frame
@@ -56,7 +59,15 @@ public class GameManager : Singleton<GameManager> {
 			//Application.LoadLevel(Application.loadedLevel);
 
 			TimeRemaining = maxTime;
-			Application.Quit();
+			Restart();
 		}
+	}
+
+	public void Restart()
+	{
+		//Application.LoadLevel(Application.loadedLevel);
+		SceneManager.LoadScene("FirstScene");
+		TimeRemaining = maxTime;
+		NumCoins = numCoins;
 	}
 }
