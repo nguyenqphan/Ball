@@ -22,10 +22,10 @@ public class GameManager : Singleton<GameManager> {
 
 	private float maxTime = 5f * 60f;
 
-	private int indexMaterial;
+	private int indexMaterial = 0;
 
 	public int IndexMaterial{
-		get{return indexMaterial = Random.Range(0, 11);}
+		get{return indexMaterial;}
 		set{indexMaterial = value;}
 	}
 
@@ -48,6 +48,7 @@ public class GameManager : Singleton<GameManager> {
 	public void Start () {
 		TimeRemaining = maxTime;
 		NumCoins = startCoints;
+		IndexMaterial = PlayerPrefs.GetInt("IndexGame");
 	}
 	
 	// Update is called once per frame
@@ -59,15 +60,28 @@ public class GameManager : Singleton<GameManager> {
 			//Application.LoadLevel(Application.loadedLevel);
 
 			TimeRemaining = maxTime;
-			Restart();
+			//Restart();
 		}
 	}
 
 	public void Restart()
 	{
 		//Application.LoadLevel(Application.loadedLevel);
-		SceneManager.LoadScene("FirstScene");
 		TimeRemaining = maxTime;
 		NumCoins = numCoins;
+		if(IndexMaterial <= 5)
+		{
+			IndexMaterial++;
+		}
+		else{ if(IndexMaterial > 5){
+				IndexMaterial = 0;
+			}
+		}
+
+		Debug.Log(IndexMaterial);
+
+		PlayerPrefs.SetInt("IndexGame", IndexMaterial);
+		SceneManager.LoadScene("FirstScene");
+
 	}
 }

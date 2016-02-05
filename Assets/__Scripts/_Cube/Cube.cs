@@ -48,6 +48,8 @@ public class Cube : MonoBehaviour {
 			//Debug.Log(box.gameObject);
 			box.enabled = false;														//Disalble all Boxcolliders when the ComboCube moves
 		}
+
+
 	
 		while (transform.position != targetPos) {
 			transform.position = Vector3.MoveTowards (transform.position, targetPos, movingSpeed * Time.deltaTime);
