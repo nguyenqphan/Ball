@@ -30,12 +30,12 @@ public class CubeMaterials : MonoBehaviour {
 
 		if(gameObject.CompareTag("LeftCube"))
 		{
-			renderMaterial.material = materialLeft[GameManager.Instance.IndexMaterial];
+			renderMaterial.material = materialLeft[2];
 
 		}
 		else if(gameObject.CompareTag("RightCube"))
 		{
-			renderMaterial.material = materialRight[GameManager.Instance.IndexMaterial];
+			renderMaterial.material = materialRight[2];
 		}
 	}
 	

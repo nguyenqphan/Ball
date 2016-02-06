@@ -13,7 +13,7 @@ public class PlayerMaterials : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		renderMaterial.material = materials[randomIndex()];
+		renderMaterial.material = materials[1];
 	}
 	
 	// Update is called once per frame

@@ -13,7 +13,9 @@ public class SkyboxMaterials : MonoBehaviour {
 	}
 	void Start () 
 	{
-		skybox.material = materials[GameManager.Instance.IndexMaterial];	
+	//	skybox.material = materials[GameManager.Instance.IndexMaterial];	
+		skybox.material = materials[2];	
+
 
 
 	}

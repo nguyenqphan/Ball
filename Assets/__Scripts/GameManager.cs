@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager> {
 			}
 		}
 
-		Debug.Log(IndexMaterial);
+//		Debug.Log(IndexMaterial);
 
 		PlayerPrefs.SetInt("IndexGame", IndexMaterial);
 		SceneManager.LoadScene("FirstScene");

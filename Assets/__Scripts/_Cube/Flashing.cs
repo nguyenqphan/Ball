@@ -4,6 +4,9 @@ using System.Collections;
 public class Flashing : MonoBehaviour {
 
 	private bool isFlashing = true;
+	private float timeFlashing = 0f;
+	private float speedFlashing = 1f;
+	private int countFlashing = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -25,26 +28,92 @@ public class Flashing : MonoBehaviour {
 	public void StartFlashing()
 	{
 		StopAllCoroutines();
+		countFlashing = 0;
+		Debug.Log(isFlashing + " is first called");
 		StartCoroutine(FlashingCube());
 	}
 
 	private IEnumerator FlashingCube()
 	{
-		while (isFlashing) {
-			MeshRenderer[] meshes = gameObject.GetComponentsInChildren<MeshRenderer> ();
-			
-			foreach (MeshRenderer mesh in meshes) {
+//		while (isFlashing) 
+//		{
+//			MeshRenderer[] meshes = gameObject.GetComponentsInChildren<MeshRenderer> ();
+//			
+//			foreach (MeshRenderer mesh in meshes) {
+//				//Debug.Log(mesh.gameObject);
+//				Color color	= mesh.material.color;
+//			//	mesh.material.color = color * 0.1f;
+//				mesh.material.SetColor("_EmissionColor", Color.white);
+//				//Debug.Log(color);
+//				//mesh.material.color = new Color (1f, 1f, 1f, 1f) * 0.1f;
+//			}			
+//			
+//			yield return 1;
+//		}
+
+		while (isFlashing) 
+		{
+			Renderer[] meshes = gameObject.GetComponentsInChildren<Renderer> ();
+			timeFlashing += Time.deltaTime * speedFlashing;
+
+			foreach (Renderer mesh in meshes) {
 				//Debug.Log(mesh.gameObject);
 				Color color	= mesh.material.color;
-				mesh.material.color = color * 0.1f;
-				//Debug.Log(color);
+				//	mesh.material.color = color * 0.1f;
+				mesh.material.shader = Shader.Find("Specular");
+				//mesh.material.SetColor("_EMISSION", new Color(20f,20f,20f));
+				//Debug.Log("I was here");
+
+			//	mesh.material.shader = Shader.Find("Specular");
+				//mesh.material.shader = Shader.Find("Standard");
+			//	mesh.material.GetColor("_SpecColor");
+				//mesh.material.GetColor("_EmissionColor");
+				//Debug.Log(mesh.material.GetColor("_EmissionColor"));
+				//Debug.Log(mesh.material.GetColor("_SpecColor"));
+			//	mesh.material.shader = Shader.Find("Emission");
+
+				if(timeFlashing < 0.4 && countFlashing < 3)
+				{
+					mesh.material.SetColor("_SpecColor", new Color(0f,40f,1f,0f));
+				}else if(timeFlashing >= 0.4f)
+				{
+					mesh.material.SetColor("_SpecColor", new Color(0.5f, 0.5f, 0.5f, 1f));
+					if(timeFlashing >= 1)
+					{
+						timeFlashing = 0f;	
+						countFlashing++;
+					}
+				}
+
+
+//				//Debug.Log(color);
 				//mesh.material.color = new Color (1f, 1f, 1f, 1f) * 0.1f;
 			}			
-			
-			yield return 1;
+
+
+			yield return 0;
+
+
 		}
 
-		isFlashing = false;
+		Debug.Log(isFlashing + " is ended");    //never reach this statement
+
+
+//		while (isFlashing)
+//		{
+//			Material[] materials = gameObject.GetComponentsInChildren<Material> ();
+//						
+//			foreach (Material material in materials) 
+//			{
+//							//Debug.Log(mesh.gameObject);
+//				material.SetColor("_EmissionColor", Color.white);
+//			}			
+//						
+//			yield return 1;
+//		}
+
+
+	
 	}
 		
 }
