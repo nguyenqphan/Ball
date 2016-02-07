@@ -4,6 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
 
+	private int testIndex = 0;
+	public int TestIndex{
+		get{return testIndex;}
+		set{testIndex = value;}
+	}
+
 	private float _timeRemaining;
 		
 	public float TimeRemaining

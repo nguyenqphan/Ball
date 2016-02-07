@@ -29,7 +29,7 @@ public class Flashing : MonoBehaviour {
 	{
 		StopAllCoroutines();
 		countFlashing = 0;
-		Debug.Log(isFlashing + " is first called");
+//		Debug.Log(isFlashing + " is first called");
 		StartCoroutine(FlashingCube());
 	}
 
