@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Deactivator : MonoBehaviour {
+	
+	public delegate void EffectAction(GameObject gameObject);
+	public static event EffectAction Emissive;
+	//private bool isEffect = true;
 
 	//private bool isActive = false;
 	private float time = 1f;
@@ -18,12 +23,14 @@ public class Deactivator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+
+		//Each comboCube can stay active in the scene for only 12 seconds
 		if(gameObject.activeInHierarchy)
 		{
 			resetTime += Time.deltaTime * time;
@@ -47,7 +54,12 @@ public class Deactivator : MonoBehaviour {
 			{
 				resetTime = 0f;
 				isFlashing = false;	
+
 				gameObject.SetActive(false);
+				if(Emissive != null)
+				{
+					Emissive(gameObject);
+				}
 
 			}
 

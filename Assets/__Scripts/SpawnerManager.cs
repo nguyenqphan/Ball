@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public class SpawnerManager : MonoBehaviour {
 	
 	public GameObject cubeToInstantiate;
+	public GameObject cubeParticle;
 
 	private List<GameObject> cubeList;
+	private List<GameObject> particleList;
+
 	private int pooledAmount = 5;
 
 	private int indexSwitch = 0;
@@ -20,22 +23,57 @@ public class SpawnerManager : MonoBehaviour {
 	{
 
 		EventManager.OnPlayerEnter += StartSpawnCube;
+		Deactivator.Emissive += PlayCubeEffect;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnPlayerEnter -= StartSpawnCube;
+		Deactivator.Emissive -= PlayCubeEffect;
 	}
 		
 	void Start()
 	{
 		cubeList = new List<GameObject>();
+		particleList = new List<GameObject>();
+
 		for(int i = 0; i < pooledAmount; i++)
 		{
 			GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
+			GameObject newParticle = Instantiate(cubeParticle, transform.position, Quaternion.identity) as GameObject;
+
 			newCube.SetActive(false);
+			newParticle.SetActive(false);
+
 			cubeList.Add(newCube);
+			particleList.Add(newParticle);
 		}
+	}
+
+	public void PlayCubeEffect(GameObject o)
+	{
+
+		//StopAllCoroutines();
+		StartCoroutine(InstantiateEffect(o));
+		
+	}
+
+
+	private IEnumerator InstantiateEffect(GameObject o)
+	{
+		for(int i = 0; i < particleList.Count; i++)
+		{
+			if(!particleList[i].activeInHierarchy)
+			{
+				particleList[i].transform.position = o.transform.position;
+				particleList[i].transform.rotation = o.transform.rotation;
+				particleList[i].SetActive(true);
+				break;
+			}
+		}
+
+		yield return 0;
+			
 	}
 
 	public void StartSpawnCube()
