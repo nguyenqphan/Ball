@@ -24,9 +24,6 @@ public class SkyboxMaterials : MonoBehaviour {
 	void Update () {
 	}
 
-	int randomIndex()
-	{
-		return Random.Range(0, materials.Length);
-	}
+
 }
 	

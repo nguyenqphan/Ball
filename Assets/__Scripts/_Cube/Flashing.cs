@@ -74,7 +74,7 @@ public class Flashing : MonoBehaviour {
 
 				if(timeFlashing < 0.4 && countFlashing < 3)
 				{
-					mesh.material.SetColor("_SpecColor", new Color(0f,0f,1f,60f));
+					mesh.material.SetColor("_SpecColor", new Color(40f,0f,40f,40f));
 				}else if(timeFlashing >= 0.4f)
 				{
 					mesh.material.SetColor("_SpecColor", new Color(0.5f, 0.5f, 0.5f, 1f));
