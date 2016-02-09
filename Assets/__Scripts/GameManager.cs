@@ -10,6 +10,13 @@ public class GameManager : Singleton<GameManager> {
 		set{testIndex = value;}
 	}
 
+	private int score;
+	private int startScore = 0;
+	public int Score{
+		get{return score;}
+		set{score = value;}
+	}
+
 	private float _timeRemaining;
 		
 	public float TimeRemaining
@@ -52,6 +59,7 @@ public class GameManager : Singleton<GameManager> {
 
 	// Use this for initialization
 	public void Start () {
+		Score = startScore;
 		TimeRemaining = maxTime;
 		NumCoins = startCoints;
 		IndexMaterial = PlayerPrefs.GetInt("IndexGame");

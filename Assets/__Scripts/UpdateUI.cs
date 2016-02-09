@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class UpdateUI : MonoBehaviour {
 
 	public Text timerLabel;
-	public Text coinLabel;
+	public Text scoreLabel;
+
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class UpdateUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timerLabel.text = FormatTime(GameManager.Instance.TimeRemaining);
-		coinLabel.text = GameManager.Instance.NumCoins.ToString();
+		scoreLabel.text = GameManager.Instance.Score.ToString();
 	}
 
 	private string FormatTime(float timeInSeconds)

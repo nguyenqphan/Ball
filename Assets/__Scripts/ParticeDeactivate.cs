@@ -20,7 +20,7 @@ public class ParticeDeactivate : MonoBehaviour {
 			{
 				startTime = 0;
 				gameObject.SetActive(false);
-				Debug.Log(startTime);
+//				Debug.Log(startTime);
 			}
 		}
 			
