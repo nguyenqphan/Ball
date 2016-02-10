@@ -10,9 +10,9 @@ public class GameManager : Singleton<GameManager> {
 		set{testIndex = value;}
 	}
 
-	private int score;
-	private int startScore = 0;
-	public int Score{
+	private int score;								//Score of the player		
+	private int startScore = 0;						//score start at 0
+	public int Score{								//Property to get and set score
 		get{return score;}
 		set{score = value;}
 	}
@@ -35,9 +35,9 @@ public class GameManager : Singleton<GameManager> {
 
 	private float maxTime = 5f * 60f;
 
-	private int indexMaterial = 0;
+	private int indexMaterial = 0;					//Array index of Materials to set up the theme of each scene
 
-	public int IndexMaterial{
+	public int IndexMaterial{						
 		get{return indexMaterial;}
 		set{indexMaterial = value;}
 	}
@@ -59,10 +59,10 @@ public class GameManager : Singleton<GameManager> {
 
 	// Use this for initialization
 	public void Start () {
-		Score = startScore;
+		Score = startScore;									//Reset the score every time the game starts
 		TimeRemaining = maxTime;
 		NumCoins = startCoints;
-		IndexMaterial = PlayerPrefs.GetInt("IndexGame");
+		IndexMaterial = PlayerPrefs.GetInt("IndexGame");	//Get the indexMaterial that has been save in Restart()
 	}
 	
 	// Update is called once per frame
@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager> {
 		}
 	}
 
-	public void Restart()
+	public void Restart()								
 	{
 		//Application.LoadLevel(Application.loadedLevel);
 		TimeRemaining = maxTime;
@@ -94,8 +94,8 @@ public class GameManager : Singleton<GameManager> {
 
 //		Debug.Log(IndexMaterial);
 
-		PlayerPrefs.SetInt("IndexGame", IndexMaterial);
-		SceneManager.LoadScene("FirstScene");
+		PlayerPrefs.SetInt("IndexGame", IndexMaterial);		//save the indexMateriasl
+		SceneManager.LoadScene("FirstScene");				//Load scene
 
 	}
 }
