@@ -58,20 +58,24 @@ public class Flashing : MonoBehaviour {
 
 			foreach (Renderer mesh in meshes) {
 				//Debug.Log(mesh.gameObject);
-				Color color	= mesh.material.color;
+//				Color color	= mesh.material.color;
 				//	mesh.material.color = color * 0.1f;
-				mesh.material.shader = Shader.Find("Specular");
+			//	mesh.material.shader = Shader.Find("Specular");
+				//Debug.Log(mesh.material.shader.name);
 				//mesh.material.SetColor("_EMISSION", new Color(20f,20f,20f));
 				//Debug.Log("I was here");
 
-			//	mesh.material.shader = Shader.Find("Specular");
-				//mesh.material.shader = Shader.Find("Standard");
+			
 			//	mesh.material.GetColor("_SpecColor");
 				//mesh.material.GetColor("_EmissionColor");
 				//Debug.Log(mesh.material.GetColor("_EmissionColor"));
 				//Debug.Log(mesh.material.GetColor("_SpecColor"));
 			//	mesh.material.shader = Shader.Find("Emission");
 
+//				mesh.material.shader = Shader.Find("Standard");
+
+
+				mesh.material.shader = Shader.Find("Specular");			//Change the shader from Standard to LegacyShaders/Specular
 				if(timeFlashing < 0.4 && countFlashing < 3)
 				{
 					mesh.material.SetColor("_SpecColor", new Color(40f,0f,40f,40f));
@@ -84,7 +88,31 @@ public class Flashing : MonoBehaviour {
 						countFlashing++;
 					}
 				}
-
+//
+//				Color temp = new Color(mesh.material.GetColor("_Color"));
+//				Debug.Log(mesh.sharedMaterial.GetColor("_Color"));
+//
+//			//	mesh.sharedMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+//
+//				if(timeFlashing < 0.4 && countFlashing < 3)
+//				{
+//					mesh.material.SetColor("_Color", new Color(1f,1f,1f, 1f));
+//				//	DynamicGI.SetEmissive(mesh, new Color(1f, 0.1f, 0.5f, 1.0f) * 4f);
+//
+//					//DynamicGI.UpdateMaterials(mesh);
+//					//DynamicGI.UpdateEnvironment();
+//				}else if(timeFlashing >= 0.4f)
+//				{
+//					mesh.material.SetColor("_Color", 	temp);
+//				//	DynamicGI.UpdateMaterials(mesh);
+//				//	DynamicGI.UpdateEnvironment();
+//					if(timeFlashing >= 1)
+//					{
+//						timeFlashing = 0f;	
+//						countFlashing++;
+//					}
+//				}
+//
 
 //				//Debug.Log(color);
 				//mesh.material.color = new Color (1f, 1f, 1f, 1f) * 0.1f;

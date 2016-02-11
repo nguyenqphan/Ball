@@ -10,7 +10,7 @@ public class SpawnerManager : MonoBehaviour {
 	private List<GameObject> cubeList;
 	private List<GameObject> particleList;
 
-	private int pooledAmount = 5;
+	private int pooledAmount = 7;
 
 	private int indexSwitch = 0;
 	private Vector3 leftOffset;
