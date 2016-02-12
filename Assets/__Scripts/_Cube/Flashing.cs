@@ -78,7 +78,7 @@ public class Flashing : MonoBehaviour {
 				mesh.material.shader = Shader.Find("Specular");			//Change the shader from Standard to LegacyShaders/Specular
 				if(timeFlashing < 0.4 && countFlashing < 3)
 				{
-					mesh.material.SetColor("_SpecColor", new Color(40f,0f,40f,40f));
+					mesh.material.SetColor("_SpecColor", new Color(0f,0f,0f,90f));
 				}else if(timeFlashing >= 0.4f)
 				{
 					mesh.material.SetColor("_SpecColor", new Color(0.5f, 0.5f, 0.5f, 1f));

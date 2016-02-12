@@ -80,16 +80,14 @@ public class GameManager : Singleton<GameManager> {
 
 	public void Restart()								
 	{
-		if(TestIndex < 4)
-		{
-			TestIndex++;
-		}
-		else if(TestIndex >=4){
-			TestIndex = 0;
-			}
-		{
-			
-		}
+//		if(TestIndex < 4)
+//		{
+//			TestIndex++;
+//		}
+//		else if(TestIndex >=4){
+//			TestIndex = 0;
+//		}
+
 		//Application.LoadLevel(Application.loadedLevel);
 		TimeRemaining = maxTime;
 		NumCoins = numCoins;
