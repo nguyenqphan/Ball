@@ -7,10 +7,12 @@ public class SpawnerManager : MonoBehaviour {
 	public GameObject cubeToInstantiate;
 	public GameObject cubeParticle;
 	public GameObject diamond;
+	public GameObject diaEmissive;
 
 	private List<GameObject> cubeList;
 	private List<GameObject> particleList;
 	private List<GameObject> diamondList;
+	private List<GameObject> diaEmissiveList;
 
 	private int pooledAmount = 5;
 
@@ -27,12 +29,14 @@ public class SpawnerManager : MonoBehaviour {
 
 		EventManager.OnPlayerEnter += StartSpawnCube;
 		Deactivator.Emissive += PlayCubeEffect;
+		DiamondDeactivate.EmissiveDiamond += PlayerDiamondEmissive;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnPlayerEnter -= StartSpawnCube;
 		Deactivator.Emissive -= PlayCubeEffect;
+		DiamondDeactivate.EmissiveDiamond -= PlayerDiamondEmissive;
 	}
 		
 	void Start()
@@ -40,20 +44,24 @@ public class SpawnerManager : MonoBehaviour {
 		cubeList = new List<GameObject>();
 		particleList = new List<GameObject>();
 		diamondList = new List<GameObject>();
+		diaEmissiveList = new List<GameObject>();
 
 		for(int i = 0; i < pooledAmount; i++)
 		{
 			GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
 			GameObject newParticle = Instantiate(cubeParticle, transform.position, Quaternion.identity) as GameObject;
 			GameObject newDiamond = Instantiate(diamond, transform.position, Quaternion.identity) as GameObject;
+			GameObject newDiaEmissive = Instantiate(diaEmissive, transform.position, Quaternion.identity) as GameObject;
 
 			newCube.SetActive(false);
 			newParticle.SetActive(false);
 			newDiamond.SetActive(false);
+			newDiaEmissive.SetActive(false);
 
 			cubeList.Add(newCube);
 			particleList.Add(newParticle);
 			diamondList.Add(newDiamond);
+			diaEmissiveList.Add(newDiaEmissive);
 		}
 	} 
 
@@ -81,6 +89,27 @@ public class SpawnerManager : MonoBehaviour {
 
 		yield return 0;
 			
+	}
+
+	public void PlayerDiamondEmissive(GameObject o)
+	{
+		StartCoroutine(InstantiateDiamondEmissive(o));
+	}
+
+	private IEnumerator InstantiateDiamondEmissive(GameObject o)
+	{
+		for(int i =0; i < diaEmissiveList.Count; i++)
+		{
+			if(!diaEmissiveList[i].activeInHierarchy)
+			{
+				diaEmissiveList[i].transform.position = o.transform.position;
+				diaEmissiveList[i].transform.rotation = o.transform.rotation;
+				diaEmissiveList[i].SetActive(true);
+				break;
+			}
+		}
+
+		yield return 0;
 	}
 
 	public void StartSpawnCube()
@@ -179,6 +208,7 @@ public class SpawnerManager : MonoBehaviour {
 
 		yield return 0;
 	}
+
 
 
 }
