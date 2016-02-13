@@ -5,6 +5,9 @@ public class Diamond : MonoBehaviour {
 	
 //	[SerializeField]
 //	private float rotateSpeed = 1.0f; // In rotations per second
+	private bool isSpinning = true;
+	private bool isFloating = true;
+	private float movingSpeed = 20f;
 	
 	[SerializeField]
 	private float floatSpeed = 0.5f; // In cycles (up and down) per second
@@ -27,44 +30,78 @@ public class Diamond : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		startingY = transform.position.y;
-		transform.Rotate (transform.up, Random.Range (0f, 360f));
+		if(gameObject.CompareTag("StartDiamond"))
+		{
+			StartCoroutine(Spin());
+			StartCoroutine(Float());
+		}
+
 	}
 	
 	void Update() {
-		Spin ();
-		Float ();
+
+
+
 	}
 	
 	private void Pickup()
 	{
-		GameManager.Instance.NumCoins++;
-		Destroy (gameObject);
+		GameManager.Instance.Score++;
+		gameObject.SetActive(false);
 	}
 	
-	private void Spin()
+	private IEnumerator Spin()
 	{
-		transform.Rotate (transform.forward, 360 * .5f * Time.deltaTime, Space.World);
+		while(isSpinning)
+		{
+			transform.Rotate (transform.forward, 360 * .5f * Time.deltaTime, Space.World);
+			yield return 0;
+		}
 	}
 
 
 
-	private void Float()
+	private IEnumerator Float()
 	{
-		float newY = transform.position.y + (isMovingUp ? 1 : -1) * 2 * movementDistance * floatSpeed * Time.deltaTime;
-		
-		if (newY > startingY + movementDistance)
-		{
-			newY = startingY + movementDistance;
-			isMovingUp = false;
+		startingY = transform.position.y;
+		while (isFloating) {
+			float newY = transform.position.y + (isMovingUp ? 1 : -1) * 2 * movementDistance * floatSpeed * Time.deltaTime;
+			
+			if (newY > startingY + movementDistance) {
+				newY = startingY + movementDistance;
+				isMovingUp = false;
+			} else if (newY < startingY) {
+				newY = startingY;
+				isMovingUp = true;
+			}
+			
+			transform.position = new Vector3 (transform.position.x, newY, transform.position.z);
+
+			yield return 0;
 		}
-		else if (newY < startingY)
-		{
-			newY = startingY;
-			isMovingUp = true;
-		}
-		
-		transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 	}
+
+	public void MoveDiamond(Vector3 targetPos)
+	{
+		StartCoroutine(moving(targetPos));
+	}
+
+	private IEnumerator moving(Vector3 targetPos)
+	{
+		MeshCollider meshCollider = gameObject.GetComponent<MeshCollider>();
+		meshCollider.enabled = false;
+
+		while(transform.position != targetPos)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, targetPos, movingSpeed * Time.deltaTime);
+			yield return 0;
+		}
+
+		meshCollider.enabled = true;
+		StartCoroutine(Spin());
+		StartCoroutine(Float());
+	}
+
+
 	
 }

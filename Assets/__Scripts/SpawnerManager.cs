@@ -6,15 +6,18 @@ public class SpawnerManager : MonoBehaviour {
 	
 	public GameObject cubeToInstantiate;
 	public GameObject cubeParticle;
+	public GameObject diamond;
 
 	private List<GameObject> cubeList;
 	private List<GameObject> particleList;
+	private List<GameObject> diamondList;
 
-	private int pooledAmount = 7;
+	private int pooledAmount = 5;
 
 	private int indexSwitch = 0;
 	private Vector3 leftOffset;
 	private Vector3 rightOeffet;
+	private Vector3 position;
 
 	private float fixedY = 2f;
 	private float fixedX;
@@ -36,19 +39,23 @@ public class SpawnerManager : MonoBehaviour {
 	{
 		cubeList = new List<GameObject>();
 		particleList = new List<GameObject>();
+		diamondList = new List<GameObject>();
 
 		for(int i = 0; i < pooledAmount; i++)
 		{
 			GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
 			GameObject newParticle = Instantiate(cubeParticle, transform.position, Quaternion.identity) as GameObject;
+			GameObject newDiamond = Instantiate(diamond, transform.position, Quaternion.identity) as GameObject;
 
 			newCube.SetActive(false);
 			newParticle.SetActive(false);
+			newDiamond.SetActive(false);
 
 			cubeList.Add(newCube);
 			particleList.Add(newParticle);
+			diamondList.Add(newDiamond);
 		}
-	}
+	} 
 
 	public void PlayCubeEffect(GameObject o)
 	{
@@ -95,6 +102,15 @@ public class SpawnerManager : MonoBehaviour {
 		return new Vector3(fixedX, fixedY, 0f);
 	}
 
+	Vector3 diamondPos()
+	{
+		if(fixedX > 0)
+			return position + new Vector3(2f, 2.5f, 0f);
+		else if(fixedX < 0)
+			return position + new Vector3(-2f, 2.5f, 0f);
+		return Vector3.zero;										//never reach this statement
+	}
+
 	int randomFixedY()
 	{
 		return Random.Range(5, 10);
@@ -118,6 +134,8 @@ public class SpawnerManager : MonoBehaviour {
 
 	private IEnumerator InstantiateCube()
 	{
+		position = targetPosition();
+		StartCoroutine(InstantiateDiamond());
 	
 		yield return new WaitForSeconds(3f);
 			
@@ -129,7 +147,8 @@ public class SpawnerManager : MonoBehaviour {
 				cubeList[i].transform.rotation = Quaternion.Euler(0f, 0f, randonDegree());
 				cubeList[i].SetActive(true);
 				Cube cube = cubeList[i].GetComponent<Cube>();
-				cube.MoveCube(targetPosition());
+
+				cube.MoveCube(position);
 				break;
 			}
 		}
@@ -141,6 +160,24 @@ public class SpawnerManager : MonoBehaviour {
 		//	cube.MoveCube(targetPosition());
 	
 			yield return 0;
+	}
+
+	private IEnumerator InstantiateDiamond()
+	{
+		for(int i = 0; i < diamondList.Count; i++)
+		{
+			if(!diamondList[i].activeInHierarchy)
+			{
+				diamondList[i].transform.position = transform.position;
+				diamondList[i].transform.rotation = Quaternion.Euler(270f, 0f, 0f);;
+				diamondList[i].SetActive(true);
+				Diamond diamondScript = diamondList[i].GetComponent<Diamond>();
+				diamondScript.MoveDiamond(diamondPos());
+				break;
+			}
+		}
+
+		yield return 0;
 	}
 
 
