@@ -10,6 +10,7 @@ public class EventManager : MonoBehaviour {
 	public static event EventAction OnPlayerLeft;
 	public static event EventAction OnPlayerEnter;
 
+	private float wait = 1f;
 	private float spawnTime = 0f;				
 	private float speedTime = 1f;
 
@@ -21,7 +22,7 @@ public class EventManager : MonoBehaviour {
 	void OnTriggerEnter(Collider collider)
 	{
 
-		if (spawnTime >= 6f || gameObject.CompareTag("S"))
+		if (spawnTime >= wait || gameObject.CompareTag("S"))
 		{
 			spawnTime = 0f;
 			if (collider.gameObject.tag == "Player") {

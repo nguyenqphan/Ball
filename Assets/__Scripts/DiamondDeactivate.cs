@@ -19,7 +19,7 @@ public class DiamondDeactivate : MonoBehaviour {
 		if(gameObject.activeInHierarchy)
 		{
 			resetTime += Time.deltaTime * speed;
-			if(resetTime >= 13f)
+			if(resetTime >= 15)
 			{
 				resetTime = 0f;
 				gameObject.SetActive(false);
