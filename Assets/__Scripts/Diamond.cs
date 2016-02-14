@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class Diamond : MonoBehaviour {
+
+	public delegate void ActionBreaking(GameObject gameObject);
+	public static event ActionBreaking BreakingDiamond;
 	
 //	[SerializeField]
 //	private float rotateSpeed = 1.0f; // In rotations per second
@@ -25,6 +28,18 @@ public class Diamond : MonoBehaviour {
 		{
 
 			Pickup();
+			if(BreakingDiamond != null)
+			{
+				BreakingDiamond(gameObject);
+			}
+
+		}
+		else if(collider.gameObject.CompareTag("ComboCube")){
+			if(BreakingDiamond != null)
+			{
+				gameObject.SetActive(false);
+				BreakingDiamond(gameObject);
+			}
 		}
 	}
 	

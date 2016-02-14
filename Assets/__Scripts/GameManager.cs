@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
 
-	private int testIndex = 0;
+	private int testIndex = 2;
 	public int TestIndex{
 		get{return testIndex;}
 		set{testIndex = value;}

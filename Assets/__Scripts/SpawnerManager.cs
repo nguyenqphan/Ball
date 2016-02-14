@@ -8,11 +8,13 @@ public class SpawnerManager : MonoBehaviour {
 	public GameObject cubeParticle;
 	public GameObject diamond;
 	public GameObject diaEmissive;
+	public GameObject diaBreaking;
 
 	private List<GameObject> cubeList;
 	private List<GameObject> particleList;
 	private List<GameObject> diamondList;
 	private List<GameObject> diaEmissiveList;
+	private List<GameObject> diaBreakingList;
 
 	private int pooledAmount = 5;
 
@@ -30,6 +32,7 @@ public class SpawnerManager : MonoBehaviour {
 		EventManager.OnPlayerEnter += StartSpawnCube;
 		Deactivator.Emissive += PlayCubeEffect;
 		DiamondDeactivate.EmissiveDiamond += PlayerDiamondEmissive;
+		Diamond.BreakingDiamond += PlayDiamondBreaking;
 	}
 
 	void OnDisable()
@@ -37,6 +40,7 @@ public class SpawnerManager : MonoBehaviour {
 		EventManager.OnPlayerEnter -= StartSpawnCube;
 		Deactivator.Emissive -= PlayCubeEffect;
 		DiamondDeactivate.EmissiveDiamond -= PlayerDiamondEmissive;
+		Diamond.BreakingDiamond -= PlayDiamondBreaking;
 	}
 		
 	void Start()
@@ -45,6 +49,7 @@ public class SpawnerManager : MonoBehaviour {
 		particleList = new List<GameObject>();
 		diamondList = new List<GameObject>();
 		diaEmissiveList = new List<GameObject>();
+		diaBreakingList = new List<GameObject>();
 
 		for(int i = 0; i < pooledAmount; i++)
 		{
@@ -52,16 +57,19 @@ public class SpawnerManager : MonoBehaviour {
 			GameObject newParticle = Instantiate(cubeParticle, transform.position, Quaternion.identity) as GameObject;
 			GameObject newDiamond = Instantiate(diamond, transform.position, Quaternion.identity) as GameObject;
 			GameObject newDiaEmissive = Instantiate(diaEmissive, transform.position, Quaternion.identity) as GameObject;
+			GameObject newDiaBreaking = Instantiate(diaBreaking, transform.position, Quaternion.identity) as GameObject;
 
 			newCube.SetActive(false);
 			newParticle.SetActive(false);
 			newDiamond.SetActive(false);
 			newDiaEmissive.SetActive(false);
+			newDiaBreaking.SetActive(false);
 
 			cubeList.Add(newCube);
 			particleList.Add(newParticle);
 			diamondList.Add(newDiamond);
 			diaEmissiveList.Add(newDiaEmissive);
+			diaBreakingList.Add(newDiaBreaking);
 		}
 	} 
 
@@ -105,6 +113,27 @@ public class SpawnerManager : MonoBehaviour {
 				diaEmissiveList[i].transform.position = o.transform.position;
 				diaEmissiveList[i].transform.rotation = o.transform.rotation;
 				diaEmissiveList[i].SetActive(true);
+				break;
+			}
+		}
+
+		yield return 0;
+	}
+
+	public void PlayDiamondBreaking(GameObject o)
+	{
+		StartCoroutine(InstantiateDiamondBreaking(o));
+	}
+
+	private IEnumerator InstantiateDiamondBreaking(GameObject o)
+	{
+		for(int i = 0; i < diaBreakingList.Count; i++)
+		{
+			if(!diaBreakingList[i].activeInHierarchy)
+			{
+				diaBreakingList[i].transform.position = o.transform.position;
+				diaBreakingList[i].transform.rotation = o.transform.rotation;
+				diaBreakingList[i].SetActive(true);
 				break;
 			}
 		}
