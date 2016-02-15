@@ -9,14 +9,17 @@ public class SpawnerManager : MonoBehaviour {
 	public GameObject diamond;
 	public GameObject diaEmissive;
 	public GameObject diaBreaking;
+	public GameObject ball;
 
 	private List<GameObject> cubeList;
 	private List<GameObject> particleList;
 	private List<GameObject> diamondList;
 	private List<GameObject> diaEmissiveList;
 	private List<GameObject> diaBreakingList;
+	private List<GameObject> ballList;
 
 	private int pooledAmount = 5;
+	private int ballAmount = 3;
 
 	private int indexSwitch = 0;
 	private Vector3 leftOffset;
@@ -55,6 +58,7 @@ public class SpawnerManager : MonoBehaviour {
 		diamondList = new List<GameObject>();
 		diaEmissiveList = new List<GameObject>();
 		diaBreakingList = new List<GameObject>();
+		ballList = new List<GameObject>();
 
 		for(int i = 0; i < pooledAmount; i++)
 		{
@@ -76,12 +80,19 @@ public class SpawnerManager : MonoBehaviour {
 			diaEmissiveList.Add(newDiaEmissive);
 			diaBreakingList.Add(newDiaBreaking);
 		}
+
+		for(int j = 0; j < ballAmount; j++)
+		{
+			GameObject newBall = Instantiate(ball, transform.position, Quaternion.identity) as GameObject;
+			newBall.SetActive(false);
+			ballList.Add(newBall);
+		}
 	} 
 
 	void Update()
 	{
 		spawnTime += Time.deltaTime * speedTime;
-		Debug.Log(spawnTime);
+		//Debug.Log(spawnTime);
 	}
 
 	public void PlayCubeEffect(GameObject o)
@@ -185,6 +196,11 @@ public class SpawnerManager : MonoBehaviour {
 		return Vector3.zero;										//never reach this statement
 	}
 
+	Vector3 ballPos()
+	{
+			return position + new Vector3(0f, 1.5f, 0f );
+	}
+
 	int randomFixedY()
 	{
 		return Random.Range(5, 10);
@@ -210,6 +226,13 @@ public class SpawnerManager : MonoBehaviour {
 	{
 		position = targetPosition();
 		StartCoroutine(InstantiateDiamond());
+
+
+		//Condition to Spawn ball
+		if(GameManager.Instance.Score == 3)
+		{
+			StartCoroutine(InstantiateBall());
+		}
 	
 		yield return new WaitForSeconds(3f);
 			
@@ -247,6 +270,26 @@ public class SpawnerManager : MonoBehaviour {
 				diamondList[i].SetActive(true);
 				Diamond diamondScript = diamondList[i].GetComponent<Diamond>();
 				diamondScript.MoveDiamond(diamondPos());
+				break;
+			}
+		}
+
+		yield return 0;
+	}
+
+	private IEnumerator InstantiateBall()
+	{
+		yield return new WaitForSeconds(1f);
+
+		for(int i = 0; i < ballList.Count; i++)
+		{
+			if(!ballList[i].activeInHierarchy)
+			{
+				ballList[i].transform.position = transform.position;
+				ballList[i].transform.rotation = transform.rotation;
+				ballList[i].SetActive(true);
+				Ball ballScript = ballList[i].GetComponent<Ball>();
+				ballScript.MoveBall(ballPos());
 				break;
 			}
 		}

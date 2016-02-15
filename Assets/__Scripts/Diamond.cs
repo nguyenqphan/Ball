@@ -11,11 +11,9 @@ public class Diamond : MonoBehaviour {
 	private bool isSpinning = true;
 	private bool isFloating = true;
 	private float movingSpeed = 20f;
-	
-	[SerializeField]
-	private float floatSpeed = 0.5f; // In cycles (up and down) per second
-	
-	[SerializeField]
+
+	private float floatSpeed = 1f; // In cycles (up and down) per second
+
 	private float movementDistance = 0.5f; // The maximum distance the coin can move up and down
 	
 	private float startingY;
@@ -80,7 +78,7 @@ public class Diamond : MonoBehaviour {
 	{
 		startingY = transform.position.y;
 		while (isFloating) {
-			float newY = transform.position.y + (isMovingUp ? 1 : -1) * 2 * movementDistance * floatSpeed * Time.deltaTime;
+			float newY = transform.position.y + (isMovingUp ? 1 : -1)  * movementDistance * floatSpeed * Time.deltaTime;
 			
 			if (newY > startingY + movementDistance) {
 				newY = startingY + movementDistance;
@@ -116,6 +114,7 @@ public class Diamond : MonoBehaviour {
 		StartCoroutine(Spin());
 		StartCoroutine(Float());
 	}
+
 
 
 	
