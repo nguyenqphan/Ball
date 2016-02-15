@@ -21,6 +21,9 @@ public class CameraTracker : MonoBehaviour {
 //	private float camSpeed = 5f;								// Speed of camera
 
 
+	//nothing changes from previous commit. Need this comment line to make a commit
+
+
 	void OnEnable()
 	{
 		EventManager.OnCamMove += PlayerLand;
