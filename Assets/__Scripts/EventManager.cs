@@ -10,33 +10,23 @@ public class EventManager : MonoBehaviour {
 	public static event EventAction OnPlayerLeft;
 	public static event EventAction OnPlayerEnter;
 
-	private float wait = 1f;
-	private float spawnTime = 0f;				
-	private float speedTime = 1f;
-
 	void Update()
 	{
-		spawnTime += Time.deltaTime * speedTime;
+		
 	}
 
 	void OnTriggerEnter(Collider collider)
 	{
 
-		if (spawnTime >= wait || gameObject.CompareTag("S"))
-		{
-			spawnTime = 0f;
+
 			if (collider.gameObject.tag == "Player") {
 				GameManager.Instance.Score++;
 				if (OnCamMove != null) {
 					OnCamMove ();
 				}
 				if (OnPlayerEnter != null) {
-					//Debug.Log(collider.gameObject.tag + " is triggered");
-					//Debug.Log(gameObject + " is the trigger target");
-					OnPlayerEnter ();
-			
-				}
-			}
+					OnPlayerEnter ();	
+				}		
 		}
 	}
 

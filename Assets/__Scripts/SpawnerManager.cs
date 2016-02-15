@@ -26,6 +26,11 @@ public class SpawnerManager : MonoBehaviour {
 	private float fixedY = 2f;
 	private float fixedX;
 
+	private float wait = 3f;
+	private float spawnTime = 0f;				
+	private float speedTime = 1f;
+	private bool firstSpawn = true;
+
 	void OnEnable()
 	{
 
@@ -72,6 +77,12 @@ public class SpawnerManager : MonoBehaviour {
 			diaBreakingList.Add(newDiaBreaking);
 		}
 	} 
+
+	void Update()
+	{
+		spawnTime += Time.deltaTime * speedTime;
+		Debug.Log(spawnTime);
+	}
 
 	public void PlayCubeEffect(GameObject o)
 	{
@@ -143,15 +154,20 @@ public class SpawnerManager : MonoBehaviour {
 
 	public void StartSpawnCube()
 	{
-		if(indexSwitch == 1){
-			indexSwitch = 0;
-			fixedX = 2.5f;
-		}else { if(indexSwitch == 0)
-			indexSwitch = 1;
-			fixedX = -2.5f;
+		if (firstSpawn || spawnTime >= wait) {
+			spawnTime = 0f;
+			firstSpawn = false;
+			if (indexSwitch == 1) {
+				indexSwitch = 0;
+				fixedX = 2.5f;
+			} else {
+				if (indexSwitch == 0)
+					indexSwitch = 1;
+				fixedX = -2.5f;
+			}
+				
+			StartCoroutine (InstantiateCube ());
 		}
-			
-		StartCoroutine(InstantiateCube());
 	}
 
 	Vector3 targetPosition(){
