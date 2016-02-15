@@ -183,7 +183,7 @@ public class SpawnerManager : MonoBehaviour {
 
 	Vector3 targetPosition(){
 		//fixedY += -randomFixedY();
-		fixedY += -4.5f;
+		fixedY += -10f;
 		return new Vector3(fixedX, fixedY, 0f);
 	}
 
@@ -229,7 +229,7 @@ public class SpawnerManager : MonoBehaviour {
 
 
 		//Condition to Spawn ball
-		if(GameManager.Instance.Score == 3)
+		if(GameManager.Instance.Score == 3 || GameManager.Instance.Score == 6)
 		{
 			StartCoroutine(InstantiateBall());
 		}

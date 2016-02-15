@@ -16,6 +16,7 @@ public class PlayerScaler : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		StartCoroutine(ScalePlayer(other));
+		gameObject.SetActive(false);
 	}
 
 	IEnumerator ScalePlayer(Collider other)

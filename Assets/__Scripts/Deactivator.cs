@@ -6,9 +6,7 @@ public class Deactivator : MonoBehaviour {
 	
 	public delegate void EffectAction(GameObject gameObject);
 	public static event EffectAction Emissive;
-	//private bool isEffect = true;
 
-	//private bool isActive = false;
 	private float time = 1f;
 	private float resetTime = 0f;
 	private GameObject leftCube;
@@ -20,12 +18,7 @@ public class Deactivator : MonoBehaviour {
 	{
 		flashing = GetComponent<Flashing>();
 	}
-
-	// Use this for initialization
-	void Start () {
-
-	}
-	
+		
 	// Update is called once per frame
 	void Update () {
 

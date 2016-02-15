@@ -7,7 +7,8 @@ public class DiamondDeactivate : MonoBehaviour {
 	public static event EmissiveAction EmissiveDiamond;
 
 	private float speed = 1f;
-	private float resetTime = 0f;
+	[HideInInspector]
+	public float resetTime = 0f;
 //	public Particle emissiveDiamond;
 	// Use this for initialization
 	void Start () {

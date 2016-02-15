@@ -19,6 +19,11 @@ public class Ball : MonoBehaviour {
 	
 	}
 
+	void OnTriggerEnter(Collider collider){
+		
+	}
+
+
 	public void MoveBall(Vector3 targetPos)
 	{
 		StartCoroutine(moving(targetPos));
@@ -42,7 +47,7 @@ public class Ball : MonoBehaviour {
 
 	private IEnumerator pulse()
 	{
-		Debug.Log("Start pulsing");
+//		Debug.Log("Start pulsing");
 		startScale = transform.localScale.x;
 		while(true)
 		{

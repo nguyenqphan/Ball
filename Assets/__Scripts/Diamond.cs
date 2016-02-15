@@ -5,9 +5,7 @@ public class Diamond : MonoBehaviour {
 
 	public delegate void ActionBreaking(GameObject gameObject);
 	public static event ActionBreaking BreakingDiamond;
-	
-//	[SerializeField]
-//	private float rotateSpeed = 1.0f; // In rotations per second
+
 	private bool isSpinning = true;
 	private bool isFloating = true;
 	private float movingSpeed = 20f;
@@ -18,8 +16,24 @@ public class Diamond : MonoBehaviour {
 	
 	private float startingY;
 	private bool isMovingUp = true;
-	 
+	private DiamondDeactivate diaDeactivate;
+
+	void Awake()
+	{
+		diaDeactivate = GetComponent<DiamondDeactivate>();
+	}
 	
+	// Use this for initialization
+	void Start () {
+		if(gameObject.CompareTag("StartDiamond"))
+		{
+			StartCoroutine(Spin());
+			StartCoroutine(Float());
+		}
+
+	}
+
+
 	void OnTriggerEnter(Collider collider)
 	{
 		if (collider.gameObject.tag == "Player")
@@ -41,24 +55,9 @@ public class Diamond : MonoBehaviour {
 		}
 	}
 	
-	// Use this for initialization
-	void Start () {
-		if(gameObject.CompareTag("StartDiamond"))
-		{
-			StartCoroutine(Spin());
-			StartCoroutine(Float());
-		}
-
-	}
-	
-	void Update() {
-
-
-
-	}
-	
 	private void Pickup()
 	{
+		diaDeactivate.resetTime = 0f;
 		GameManager.Instance.Score++;
 		gameObject.SetActive(false);
 	}
@@ -71,8 +70,6 @@ public class Diamond : MonoBehaviour {
 			yield return 0;
 		}
 	}
-
-
 
 	private IEnumerator Float()
 	{
