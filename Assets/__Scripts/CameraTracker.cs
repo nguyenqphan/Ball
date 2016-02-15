@@ -6,6 +6,7 @@ public class CameraTracker : MonoBehaviour {
 	public GameObject player;
 
 	private Vector3 velocity = Vector3.down;
+	private float smoothTime = 0.4f;
 
 	private Vector3 playerPos;									// Store the first position of the player
 	private Vector3 playerPosNext;								// Store the second position of the player when it lands on the cube.
@@ -102,17 +103,16 @@ public class CameraTracker : MonoBehaviour {
 
 		while(cam)
 		{
-			//transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, playerPosNext.y, transform.position.z), ref velocity , .3f);
-			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, distanceToMove, transform.position.z), ref velocity , .4f);
+			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, distanceToMove, transform.position.z), ref velocity , smoothTime);
 
 			yield return 0;
 		}
-	
 	}
 
 	void PlayerLeft()
 	{
 		cam = false;
+		Debug.Log(transform.position);
 	}
 	
 }

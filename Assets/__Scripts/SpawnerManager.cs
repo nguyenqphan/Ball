@@ -21,12 +21,12 @@ public class SpawnerManager : MonoBehaviour {
 	private int pooledAmount = 5;
 	private int ballAmount = 3;
 
-	private int indexSwitch = 0;
+	private int indexSwitch = 1;
 	private Vector3 leftOffset;
 	private Vector3 rightOeffet;
 	private Vector3 position;
 
-	private float fixedY = 2f;
+	private float fixedY = 4f;
 	private float fixedX;
 
 	private float wait = 3f;
@@ -97,7 +97,6 @@ public class SpawnerManager : MonoBehaviour {
 
 	public void PlayCubeEffect(GameObject o)
 	{
-
 		//StopAllCoroutines();
 		StartCoroutine(InstantiateEffect(o));
 		
@@ -201,6 +200,11 @@ public class SpawnerManager : MonoBehaviour {
 			return position + new Vector3(0f, 1.5f, 0f );
 	}
 
+	Vector3 camPos()
+	{
+		return 	Vector3.zero	;
+	}
+
 	int randomFixedY()
 	{
 		return Random.Range(5, 10);
@@ -210,23 +214,11 @@ public class SpawnerManager : MonoBehaviour {
 	{
 		return Random.Range(-30f, 30f);;
 	}
-//	private IEnumerator InstantiateCube()
-//	{
-//
-//		yield return new WaitForSeconds(3f);
-//
-//		GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
-//		Cube cube = newCube.GetComponent<Cube>();
-//		cube.MoveCube(targetPosition());
-//
-//		yield return 0;
-//	}
 
 	private IEnumerator InstantiateCube()
 	{
 		position = targetPosition();
 		StartCoroutine(InstantiateDiamond());
-
 
 		//Condition to Spawn ball
 		if(GameManager.Instance.Score == 3 || GameManager.Instance.Score == 6)
@@ -250,12 +242,6 @@ public class SpawnerManager : MonoBehaviour {
 			}
 		}
 
-		//Cube cube = cubeList[i].GetComponent<Cube>();
-	
-			//GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
-			//Cube cube = newCube.GetComponent<Cube>();
-		//	cube.MoveCube(targetPosition());
-	
 			yield return 0;
 	}
 
