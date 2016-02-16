@@ -36,7 +36,7 @@ public class Diamond : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.tag == "Player")
+		if (collider.gameObject.CompareTag("Player"))
 		{
 
 			Pickup();

@@ -236,7 +236,7 @@ public class SpawnerManager : MonoBehaviour {
 				cubeList[i].transform.rotation = Quaternion.Euler(0f, 0f, randonDegree());
 				cubeList[i].SetActive(true);
 				Cube cube = cubeList[i].GetComponent<Cube>();
-
+//				cube.tag
 				cube.MoveCube(position);
 				break;
 			}

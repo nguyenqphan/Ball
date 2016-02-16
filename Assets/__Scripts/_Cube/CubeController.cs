@@ -32,11 +32,11 @@ public class CubeController : MonoBehaviour {
 					rotating = true;														//set rotating equal true, so that we can rotate the cube
 					Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 2f);          //Debug
 
-					if(hit.collider.gameObject.tag == "LeftCube")                           //Check if the hit object is a LeftCube
+					if(hit.collider.gameObject.CompareTag("LeftCube"))                           //Check if the hit object is a LeftCube
 					{
 						dirToRotate = -1f;								
 					}
-					else if(hit.collider.gameObject.tag == "RightCube")                     //Check if the hit object is a RightCube
+					else if(hit.collider.gameObject.CompareTag("RightCube"))                     //Check if the hit object is a RightCube
 					{
 						dirToRotate = 1f;
 					}

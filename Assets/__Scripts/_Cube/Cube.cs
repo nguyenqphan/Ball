@@ -42,12 +42,21 @@ public class Cube : MonoBehaviour {
 
 	public IEnumerator StartToMove(Vector3 targetPos)
 	{
-		BoxCollider[] boxes = gameObject.GetComponentsInChildren<BoxCollider>();									//Get all BoxColliders in ComboCube				
+		BoxCollider[] boxes = gameObject.GetComponentsInChildren<BoxCollider>();
+	
+		//Change name of the tags so that the cube can not be rotated when it is flying into position.			
 		foreach(BoxCollider box in boxes)
 		{
-			box.enabled = false;																					//Disalble all Boxcolliders when the ComboCube is still moving to desired target
-		}
+			if(box.gameObject.CompareTag("LeftCube"))
+			{
+				box.gameObject.tag = "NotLeft";
+			}
+			if(box.gameObject.CompareTag("RightCube"))
+			{
+				box.gameObject.tag = "NotRight";
+			}
 
+		}
 
 		while (transform.position != targetPos) {
 			transform.position = Vector3.MoveTowards (transform.position, targetPos, movingSpeed * Time.deltaTime);	//Moving to the target
@@ -55,9 +64,17 @@ public class Cube : MonoBehaviour {
 			yield return 0;	
 		}
 
+		//Change the name of tags to original after the cube has reached the target position. The player can rotate the cube now
 		foreach(BoxCollider box in boxes)
-		{
-			box.enabled = true;																						//Enable all BoxColliders in ComboCube after the cube reaches target position
+		{																						
+			if(box.gameObject.CompareTag("NotLeft"))
+			{
+				box.gameObject.tag = "LeftCube";
+			}
+			if(box.gameObject.CompareTag("NotRight"))
+			{
+				box.gameObject.tag = "RightCube";
+			}
 		}
 	}
 }
