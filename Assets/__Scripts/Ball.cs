@@ -3,11 +3,28 @@ using System.Collections;
 
 public class Ball : MonoBehaviour {
 
+	public delegate void ActionScaling(GameObject gameObject);
+	public static event ActionScaling Scalling;
+	
 	private float movingSpeed = 20f;
 	private float scale = 0.5f;
 	private float startScale;
 	private bool isBigger = true;
 	private float scaleSpeed = 1f;
+
+
+	void OnTriggerEnter(Collider other){
+
+		if(other.gameObject.CompareTag("Player"))
+		{
+			if(Scalling != null)
+			{
+				Scalling(gameObject);
+				gameObject.SetActive(false);
+			}
+		}
+	}
+
 
 	// Use this for initialization
 	void Start () {
@@ -17,10 +34,6 @@ public class Ball : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-
-	void OnTriggerEnter(Collider collider){
-		
 	}
 
 
@@ -51,7 +64,7 @@ public class Ball : MonoBehaviour {
 		startScale = transform.localScale.x;
 		while(true)
 		{
-			float newScale = transform.localScale.x + (isBigger ? 1 : -1) * scale * scaleSpeed * Time.deltaTime;
+			float newScale = transform.localScale.x + (isBigger ? 1 : -1) * scaleSpeed * Time.deltaTime;
 
 			if(newScale > startScale + scale)
 			{
@@ -64,6 +77,7 @@ public class Ball : MonoBehaviour {
 			}
 				
 			transform.localScale = new Vector3(newScale, newScale, newScale);
+			//Debug.Log(transform.localScale);
 			yield return 0;
 		}
 

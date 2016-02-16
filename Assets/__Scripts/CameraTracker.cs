@@ -16,10 +16,6 @@ public class CameraTracker : MonoBehaviour {
 	private Vector3 offset;										
 	private Vector3 playerStartPos;
 	private bool cam = false;                     				// A flag whether or not to allow the camera to move.
-//	private float distanceMove = 1f;							
-//	private float startTime = 0f;								// The degree in which the camera rotates
-//	private float camSpeed = 5f;								// Speed of camera
-
 
 	//nothing changes from previous commit. Need this comment line to make a commit
 
@@ -42,46 +38,7 @@ public class CameraTracker : MonoBehaviour {
 	{
     	playerStartPos = player.transform.position;				// Get the postion of the player when the game just starts
 	}
-
-//	void FixedUpdate()
-//	{
-//		if(cam)
-//		{
-//			transform.position = transform.position + new Vector3(0f,Time.deltaTime * -1f * camSpeed , 0f);         // move the camera
-//			startTime += Time.deltaTime * camSpeed;																	// The distance the camera has moved
-//			if(startTime >= distanceY)																				// Condition to stop the camera, the distance to move
-//			{	
-//				cam = false;
-//				startTime = 0;
-//
-//			}
-//		}
-//	}
-//
-
-//	void FixedUpdate()
-//	{
-//		if(cam)
-//		{
-//			transform.position = Vector3.Lerp(transform.position,(transform.position + new Vector3(transform.position.x, -1f,0f)), Time.deltaTime * 2);
-//		}
-//	}
-
-
-
-	void FixedUpdate()
-	{
-//		if(cam)
-//		{
-//
-//			//Using SmoothDamp to move the camera smoothly
-//			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, playerPosNext.y, transform.position.z), ref velocity , .3f);
-//		}
-	}
-
-
-
-	//
+		
 	void PlayerLand() 
 	{
 		cam = true;
@@ -115,7 +72,7 @@ public class CameraTracker : MonoBehaviour {
 	void PlayerLeft()
 	{
 		cam = false;
-		Debug.Log(transform.position);
+//		Debug.Log(transform.position);
 	}
 	
 }

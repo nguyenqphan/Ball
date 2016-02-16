@@ -176,13 +176,13 @@ public class SpawnerManager : MonoBehaviour {
 				fixedX = -2.5f;
 			}
 				
-			StartCoroutine (InstantiateCube ());
+			StartCoroutine (InstantiateCube ());	
 		}
 	}
 
 	Vector3 targetPosition(){
 		//fixedY += -randomFixedY();
-		fixedY += -10f;
+		fixedY += -4.5f;
 		return new Vector3(fixedX, fixedY, 0f);
 	}
 
@@ -221,7 +221,7 @@ public class SpawnerManager : MonoBehaviour {
 		StartCoroutine(InstantiateDiamond());
 
 		//Condition to Spawn ball
-		if(GameManager.Instance.Score == 3 || GameManager.Instance.Score == 6)
+		if(GameManager.Instance.Score == 1 || GameManager.Instance.Score == 0)
 		{
 			StartCoroutine(InstantiateBall());
 		}
