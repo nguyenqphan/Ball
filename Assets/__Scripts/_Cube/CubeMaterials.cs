@@ -28,12 +28,12 @@ public class CubeMaterials : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if(gameObject.CompareTag("LeftCube"))
+		if(gameObject.CompareTag("LeftCube") || gameObject.CompareTag("NotLeft"))
 		{
 			renderMaterial.material = materialLeft[GameManager.Instance.TestIndex];
 
 		}
-		else if(gameObject.CompareTag("RightCube"))
+		else if(gameObject.CompareTag("RightCube") || gameObject.CompareTag("NotRight"))
 		{
 			renderMaterial.material = materialRight[GameManager.Instance.TestIndex];
 		}
