@@ -296,6 +296,7 @@ public class SpawnerManager : MonoBehaviour {
 			{
 				ballList[i].transform.position = transform.position;
 				ballList[i].transform.rotation = transform.rotation;
+				ballList[i].transform.localScale = new Vector3(.5f,.5f,.5f);
 				ballList[i].SetActive(true);
 				Ball ballScript = ballList[i].GetComponent<Ball>();
 				ballScript.MoveBall(ballPos());
