@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraTracker : MonoBehaviour {
 
 	public GameObject player;
+	public int frameCounter = 0;
 
 	private Vector3 velocity = Vector3.down;
 	private float smoothTime = 0.4f;
@@ -12,24 +13,19 @@ public class CameraTracker : MonoBehaviour {
 	private Vector3 playerPosNext;								// Store the second position of the player when it lands on the cube.
 	private float distanceY;									// Store the distance of playerPos and PlayerPosNext (The distance the camera moves)
 
-
 	private Vector3 offset;										
-	private Vector3 playerStartPos;
-	private bool cam = false;                     				// A flag whether or not to allow the camera to move.
-
-	//nothing changes from previous commit. Need this comment line to make a commit
-
+	private Vector3 playerStartPos;                   			
 
 	void OnEnable()
 	{
 		EventManager.OnCamMove += PlayerLand;
-		EventManager.OnPlayerLeft += PlayerLeft;
+//		EventManager.OnPlayerLeft += PlayerLeft;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnCamMove -= PlayerLand;					// Listen to an event action to trigger PlayerLand function
-		EventManager.OnPlayerLeft -= PlayerLeft;                // Listten to an event action to trigger PlayerLeft function 
+//		EventManager.OnPlayerLeft -= PlayerLeft;                // Listten to an event action to trigger PlayerLeft function 
 
 	}
 
@@ -41,11 +37,10 @@ public class CameraTracker : MonoBehaviour {
 		
 	void PlayerLand() 
 	{
-		cam = true;
+		
 		playerPosNext = player.transform.position;																	// 
 		distanceY = Vector3.Distance(new Vector3(0f, playerStartPos.y, 0f), new Vector3(0f, playerPosNext.y, 0f )); //
 		playerStartPos = playerPosNext;
-		//Debug.Log(distanceY + " is the distance in y");
 		MoveCamera();
 	
 	}
@@ -53,26 +48,36 @@ public class CameraTracker : MonoBehaviour {
 	public void MoveCamera()
 	{
 		
+		StopAllCoroutines();
 		StartCoroutine(CameraToMove());
 	}
 
 	IEnumerator CameraToMove()
 	{
 		yield return new WaitForSeconds(2f);
-		var distanceToMove = transform.position.y - distanceY;
-
-		while(cam)
-		{
+		float distanceToMove = transform.position.y - distanceY;
+		while(true)
+		{	
+			frameCounter++;
 			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, distanceToMove, transform.position.z), ref velocity , smoothTime);
 
 			yield return 0;
 		}
 	}
 
-	void PlayerLeft()
-	{
-		cam = false;
-//		Debug.Log(transform.position);
-	}
+//	IEnumerator FrameCounter()
+//	{
+//		
+//		while (true) {
+//			frameCounter++;
+//			yield return 0;
+//		}
+//	}
+//	void PlayerLeft()
+//	{
+//		//cam = false;
+//		Debug.Log(cam + "left");
+////		Debug.Log(transform.position);
+//	}
 	
 }

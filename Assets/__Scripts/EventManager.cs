@@ -7,7 +7,7 @@ public class EventManager : MonoBehaviour {
 
 	public delegate void EventAction();
 	public static event EventAction OnCamMove;
-	public static event EventAction OnPlayerLeft;
+//	public static event EventAction OnPlayerLeft;
 	public static event EventAction OnPlayerEnter;
 
 	void Update()
@@ -33,7 +33,7 @@ public class EventManager : MonoBehaviour {
 	void OnTriggerExit(Collider collider)
 	{
 		//Debug.Log("Player has left");
-		OnPlayerLeft();	
+//		OnPlayerLeft();	
 
 	}
 }

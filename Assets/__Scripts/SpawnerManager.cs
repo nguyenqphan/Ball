@@ -246,7 +246,8 @@ public class SpawnerManager : MonoBehaviour {
 			if(!cubeList[i].activeInHierarchy)
 			{
 				cubeList[i].transform.position = transform.position;
-				cubeList[i].transform.rotation = Quaternion.Euler(0f, 0f, randonDegree());
+//				cubeList[i].transform.rotation = Quaternion.Euler(0f, 0f, randonDegree());
+				cubeList[i].transform.rotation = transform.rotation;
 				cubeList[i].SetActive(true);
 				Cube cube = cubeList[i].GetComponent<Cube>();
 
@@ -258,14 +259,12 @@ public class SpawnerManager : MonoBehaviour {
 				}
 				if(cube.gameObject.transform.position.x < 0)
 				{
-					Debug.Log(cube.gameObject.transform.position.x );
 					cube.LeftWallOn();
 				}
 			
 				break;
 			}
 		}
-
 			yield return 0;
 	}
 
