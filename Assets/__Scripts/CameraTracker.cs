@@ -4,10 +4,9 @@ using System.Collections;
 public class CameraTracker : MonoBehaviour {
 
 	public GameObject player;
-	public int frameCounter = 0;
 
 	private Vector3 velocity = Vector3.down;
-	private float smoothTime = 0.4f;
+	private float smoothTime = 0.9f;
 
 	private Vector3 playerPos;									// Store the first position of the player
 	private Vector3 playerPosNext;								// Store the second position of the player when it lands on the cube.
@@ -58,7 +57,6 @@ public class CameraTracker : MonoBehaviour {
 		float distanceToMove = transform.position.y - distanceY;
 		while(true)
 		{	
-			frameCounter++;
 			transform.position = Vector3.SmoothDamp( transform.position, new Vector3(transform.position.x, distanceToMove, transform.position.z), ref velocity , smoothTime);
 
 			yield return 0;

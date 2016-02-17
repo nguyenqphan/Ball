@@ -36,7 +36,6 @@ public class PlayerScaler : MonoBehaviour {
 		
 	IEnumerator ScalePlayer(GameObject other)
 	{
-
 		timerText.SetActive(true);											
 		while(transform.localScale.x < (other.gameObject.CompareTag("DoubleSize") ? doubleSize : oneHalf ))
 		{
@@ -68,7 +67,6 @@ public class PlayerScaler : MonoBehaviour {
 			float newScale = transform.localScale.x - Time.deltaTime * scalingSpeed;
 			transform.localScale = new Vector3(newScale, newScale, newScale);
 			yield return 0;
-
 		}
 	}
 
