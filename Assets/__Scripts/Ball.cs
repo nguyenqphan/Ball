@@ -20,6 +20,16 @@ public class Ball : MonoBehaviour {
 			if(Scalling != null)
 			{
 				Scalling(gameObject);
+				if(gameObject.CompareTag("OneHalf"))
+				{
+					//Debug.Log(gameObject.tag);
+					gameObject.tag = "DoubleSize";
+				}
+				if(gameObject.CompareTag("DoubleSize"))
+				{
+//					Debug.Log(gameObject.tag);
+					gameObject.tag = "OneHalf";
+				}
 				gameObject.SetActive(false);
 			}
 		}

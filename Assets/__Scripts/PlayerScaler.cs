@@ -44,9 +44,7 @@ public class PlayerScaler : MonoBehaviour {
 			transform.localScale = new Vector3(newScale, newScale, newScale);
 			yield return 0;
 		}
-
-
-
+			
 		StartCoroutine(TimeCounter(other));
 	}
 
@@ -59,6 +57,7 @@ public class PlayerScaler : MonoBehaviour {
 		}
 
 		timerText.SetActive(false);
+		GameManager.Instance.BallTimer = 3f;
 		StartCoroutine(ScaleBack(other));
 	}
 

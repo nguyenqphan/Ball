@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager> {
 
 	//The time life after the ball gets scaled
 	private float ballTimer;
-	private float clock = 30f;
+	private float clock = 3f;
 	public float BallTimer
 	{
 		get{return ballTimer;}

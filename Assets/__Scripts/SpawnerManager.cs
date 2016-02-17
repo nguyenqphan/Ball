@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SpawnerManager : MonoBehaviour {
+
+
 	
 	public GameObject cubeToInstantiate;
 	public GameObject cubeParticle;
@@ -19,7 +21,7 @@ public class SpawnerManager : MonoBehaviour {
 	private List<GameObject> ballList;
 
 	private int pooledAmount = 5;
-	private int ballAmount = 3;
+	private int ballAmount = 1;
 
 	private int indexSwitch = 1;
 	private Vector3 leftOffset;
@@ -33,6 +35,9 @@ public class SpawnerManager : MonoBehaviour {
 	private float spawnTime = 0f;				
 	private float speedTime = 1f;
 	private bool firstSpawn = true;
+
+	private int spawnNumber = 0;
+	private int ballNumber;
 
 	void OnEnable()
 	{
@@ -53,6 +58,8 @@ public class SpawnerManager : MonoBehaviour {
 		
 	void Start()
 	{
+		ballNumber = RandomSpawnNum();
+
 		cubeList = new List<GameObject>();
 		particleList = new List<GameObject>();
 		diamondList = new List<GameObject>();
@@ -175,7 +182,8 @@ public class SpawnerManager : MonoBehaviour {
 					indexSwitch = 1;
 				fixedX = -2.5f;
 			}
-				
+
+			spawnNumber++;
 			StartCoroutine (InstantiateCube ());	
 		}
 	}
@@ -221,7 +229,12 @@ public class SpawnerManager : MonoBehaviour {
 		StartCoroutine(InstantiateDiamond());
 
 		//Condition to Spawn ball
-		if(GameManager.Instance.Score == 1 || GameManager.Instance.Score == 0)
+//		if(GameManager.Instance.Score == 1 || GameManager.Instance.Score == 0)
+//		{
+//			StartCoroutine(InstantiateBall());
+//		}
+		//Condition to instantiate a scalling ball
+		if(spawnNumber%2 == 0)
 		{
 			StartCoroutine(InstantiateBall());
 		}
@@ -236,8 +249,19 @@ public class SpawnerManager : MonoBehaviour {
 				cubeList[i].transform.rotation = Quaternion.Euler(0f, 0f, randonDegree());
 				cubeList[i].SetActive(true);
 				Cube cube = cubeList[i].GetComponent<Cube>();
+
 //				cube.tag
 				cube.MoveCube(position);
+				if(cube.gameObject.transform.position.x > 0)
+				{
+					cube.RightWallOn();
+				}
+				if(cube.gameObject.transform.position.x < 0)
+				{
+					Debug.Log(cube.gameObject.transform.position.x );
+					cube.LeftWallOn();
+				}
+			
 				break;
 			}
 		}
@@ -276,6 +300,8 @@ public class SpawnerManager : MonoBehaviour {
 				ballList[i].SetActive(true);
 				Ball ballScript = ballList[i].GetComponent<Ball>();
 				ballScript.MoveBall(ballPos());
+
+
 				break;
 			}
 		}
@@ -283,6 +309,9 @@ public class SpawnerManager : MonoBehaviour {
 		yield return 0;
 	}
 
-
+	private int RandomSpawnNum()
+	{
+		return Random.Range(8, 12);
+	}
 
 }

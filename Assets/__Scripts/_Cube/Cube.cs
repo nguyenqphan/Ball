@@ -3,6 +3,21 @@ using System.Collections;
 
 public class Cube : MonoBehaviour {
 
+	public GameObject leftWall;
+	public GameObject rightWall;
+
+	public void LeftWallOn()
+	{
+		leftWall.SetActive(true);
+		rightWall.SetActive(false);
+	}
+	public void RightWallOn()
+	{
+		leftWall.SetActive(false);
+		rightWall.SetActive(true);
+	}
+
+
 	private float rotateSpeed = 30f;																				//rotation of the cube
 	private bool isRotating = true;																					//a flag to control the rotation
 	private float startTime;																						//the degree to rotate
