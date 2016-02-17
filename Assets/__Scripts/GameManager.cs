@@ -10,11 +10,22 @@ public class GameManager : Singleton<GameManager> {
 		set{testIndex = value;}
 	}
 
+
+	//the score of the game
 	private int score;								//Score of the player		
 	private int startScore = 0;						//score start at 0
 	public int Score{								//Property to get and set score
 		get{return score;}
 		set{score = value;}
+	}
+
+	//The time life after the ball gets scaled
+	private float ballTimer;
+	private float clock = 30f;
+	public float BallTimer
+	{
+		get{return ballTimer;}
+		set{ballTimer = value;}
 	}
 
 	private float _timeRemaining;
@@ -60,6 +71,7 @@ public class GameManager : Singleton<GameManager> {
 	// Use this for initialization
 	public void Start () {
 		Score = startScore;									//Reset the score every time the game starts
+		ballTimer = clock;
 		TimeRemaining = maxTime;
 		NumCoins = startCoints;
 		IndexMaterial = PlayerPrefs.GetInt("IndexGame");	//Get the indexMaterial that has been save in Restart()

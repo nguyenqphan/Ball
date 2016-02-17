@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerScaler : MonoBehaviour {
 
+	public GameObject timerText;
 
 	private float scalingSpeed = 1f;
 	private float doubleSize = 2f;
@@ -29,16 +30,46 @@ public class PlayerScaler : MonoBehaviour {
 
 	public void StartScaling(GameObject other)
 	{
+		StopAllCoroutines();
 		StartCoroutine(ScalePlayer(other));
 	}
 		
 	IEnumerator ScalePlayer(GameObject other)
 	{
+
+		timerText.SetActive(true);											
 		while(transform.localScale.x < (other.gameObject.CompareTag("DoubleSize") ? doubleSize : oneHalf ))
 		{
 			float newScale = transform.localScale.x + Time.deltaTime * scalingSpeed ;
 			transform.localScale = new Vector3(newScale, newScale, newScale);
 			yield return 0;
+		}
+
+
+
+		StartCoroutine(TimeCounter(other));
+	}
+
+	IEnumerator TimeCounter(GameObject other)
+	{
+		while(GameManager.Instance.BallTimer > 0  )
+		{
+			GameManager.Instance.BallTimer -= Time.deltaTime;
+			yield return 0;
+		}
+
+		timerText.SetActive(false);
+		StartCoroutine(ScaleBack(other));
+	}
+
+	IEnumerator ScaleBack(GameObject other)
+	{
+		while(transform.localScale.x > 1)
+		{
+			float newScale = transform.localScale.x - Time.deltaTime * scalingSpeed;
+			transform.localScale = new Vector3(newScale, newScale, newScale);
+			yield return 0;
+
 		}
 	}
 
