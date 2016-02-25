@@ -58,7 +58,7 @@ public class Diamond : MonoBehaviour {
 	private void Pickup()
 	{
 		diaDeactivate.resetTime = 0f;
-		GameManager.Instance.Score++;
+		GameStateManager.HighScore++;
 		gameObject.SetActive(false);
 	}
 	

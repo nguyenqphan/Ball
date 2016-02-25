@@ -20,7 +20,7 @@ public class EventManager : MonoBehaviour {
 
 
 			if (collider.gameObject.tag == "Player") {
-				GameManager.Instance.Score++;
+			GameStateManager.HighScore++;
 				if (OnCamMove != null) {
 					OnCamMove ();
 				}

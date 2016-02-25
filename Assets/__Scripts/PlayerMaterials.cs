@@ -13,7 +13,7 @@ public class PlayerMaterials : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		renderMaterial.material = materials[GameManager.Instance.TestIndex];
+		renderMaterial.material = materials[GameStateManager.Instance.TestIndex];
 	}
 	
 	// Update is called once per frame

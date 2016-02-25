@@ -189,8 +189,8 @@ public class SpawnerManager : MonoBehaviour {
 	}
 
 	Vector3 targetPosition(){
-		//fixedY += -randomFixedY();
-		fixedY += -4.5f;
+		fixedY += -randomFixedY();
+		//fixedY += -4.5f;
 		return new Vector3(fixedX, fixedY, 0f);
 	}
 

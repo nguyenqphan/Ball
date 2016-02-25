@@ -12,7 +12,7 @@ public class GroundEffect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		GameObject newGround= Instantiate(ground[GameManager.Instance.TestIndex], transform.position, Quaternion.identity) as GameObject;
+		GameObject newGround= Instantiate(ground[GameStateManager.Instance.TestIndex], transform.position, Quaternion.identity) as GameObject;
 		newGround.transform.SetParent(gameObject.transform);
 	}
 	

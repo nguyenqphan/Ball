@@ -49,14 +49,14 @@ public class PlayerScaler : MonoBehaviour {
 
 	IEnumerator TimeCounter(GameObject other)
 	{
-		while(GameManager.Instance.BallTimer > 0  )
+		while(GameStateManager.Instance.BallTimer > 0  )
 		{
-			GameManager.Instance.BallTimer -= Time.deltaTime;
+			GameStateManager.Instance.BallTimer -= Time.deltaTime;
 			yield return 0;
 		}
 
 		timerText.SetActive(false);
-		GameManager.Instance.BallTimer = 3f;
+		GameStateManager.Instance.BallTimer = 3f;
 		StartCoroutine(ScaleBack(other));
 	}
 

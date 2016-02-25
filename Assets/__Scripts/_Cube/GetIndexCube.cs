@@ -7,7 +7,7 @@ public class GetIndexCube: MonoBehaviour{
 
 	void Awake()
 	{
-		index = GameManager.Instance.IndexMaterial;
+		index = GameStateManager.Instance.IndexMaterial;
 	}
 
 	// Use this for initialization

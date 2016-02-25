@@ -2,7 +2,30 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager> {
+public class GameStateManager : MonoBehaviour {
+
+	private static GameStateManager instance;
+	public static GameStateManager Instance { get { return current(); } }
+	delegate GameStateManager InstanceStep();
+	static InstanceStep init = delegate()
+	{
+		GameObject container = new GameObject("GameStateManagerManager");
+		instance = container.AddComponent<GameStateManager>();
+		//instance.lives = StartingLives;
+		//instance.score = StartingScore;
+		instance.highScore = null;
+		current = final;
+		return instance;
+	};
+	static InstanceStep final = delegate() { return instance; };
+	static InstanceStep current = init;
+
+
+	void Awake()
+	{
+		// Persist through Scene loading
+		DontDestroyOnLoad(this);
+	}
 
 	private int testIndex = 2;
 	public int TestIndex{
@@ -13,14 +36,17 @@ public class GameManager : Singleton<GameManager> {
 
 	//the score of the game
 	private int score;								//Score of the player		
-	private int startScore = 0;						//score start at 0
-	public int Score{								//Property to get and set score
-		get{return score;}
-		set{score = value;}
+	private int StartingScore = 0;						//score start at 0
+	private int? highScore;
+	public static bool ScoringLockout, highScorePending;
+	public static int Score { get { return Instance.score; } }
+	public static int HighScore {
+		get { return Instance.highScore.HasValue ? Instance.highScore.Value : 0; }
+		set { Instance.highScore = value; }
 	}
 
 	//The time life after the ball gets scaled
-	private float ballTimer;
+	private float ballTimer = 3f;
 	private float clock = 3f;
 	public float BallTimer
 	{
@@ -69,9 +95,9 @@ public class GameManager : Singleton<GameManager> {
 
 
 	// Use this for initialization
-	public void Start () {
-		Score = startScore;									//Reset the score every time the game starts
-		ballTimer = clock;
+	public void StartGame () {
+		HighScore = StartingScore;									//Reset the score every time the game starts
+		BallTimer = ballTimer;
 		TimeRemaining = maxTime;
 		NumCoins = startCoints;
 		IndexMaterial = PlayerPrefs.GetInt("IndexGame");	//Get the indexMaterial that has been save in Restart()

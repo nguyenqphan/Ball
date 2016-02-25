@@ -15,8 +15,8 @@ public class UpdateUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timerLabel.text = FormatTime(GameManager.Instance.BallTimer);
-		scoreLabel.text = GameManager.Instance.Score.ToString();
+		timerLabel.text = FormatTime(GameStateManager.Instance.BallTimer);
+		scoreLabel.text = GameStateManager.HighScore.ToString();
 	}
 
 	private string FormatTime(float timeInSeconds)

@@ -10,8 +10,8 @@ public class Destroyer : MonoBehaviour {
 		{
 			collider.gameObject.SetActive(false);
 //			Debug.Log(collider.gameObject.tag);
-			GameManager.Instance.Start();
-			GameManager.Instance.Restart();
+			GameStateManager.Instance.StartGame();
+			GameStateManager.Instance.Restart();
 		}
 	}
 }
