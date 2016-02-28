@@ -116,14 +116,6 @@ public class GameStateManager : MonoBehaviour {
 		}
 	}
 
-	private bool isStarted = false;
-
-	public bool IsStarted
-	{
-		get{return isStarted;}
-		set{isStarted = value;}
-	}
-
 	public void Restart()								
 	{
 		if(TestIndex < 4)
@@ -149,12 +141,7 @@ public class GameStateManager : MonoBehaviour {
 //		Debug.Log(IndexMaterial);
 
 		PlayerPrefs.SetInt("IndexGame", IndexMaterial);		//save the indexMateriasl
+		SceneManager.LoadScene("FirstScene");				//Load scene
 
-		if(!isStarted){
-			SceneManager.LoadScene("StartingScene");
-		}
-		else{
-			SceneManager.LoadScene("FirstScene");			//Load scene
-		}
 	}
 }

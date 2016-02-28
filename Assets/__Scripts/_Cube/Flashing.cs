@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Flashing : MonoBehaviour {
 
-	private bool isFlashing = true;
+	private bool isFlashing;
 	private float timeFlashing = 0f;
 	private float speedFlashing = 1f;
-	private int countFlashing = 0;
+	private int countFlashing;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +27,8 @@ public class Flashing : MonoBehaviour {
 
 	public void StartFlashing()
 	{
+		countFlashing = 0;
+		isFlashing = true;
 		StopAllCoroutines();
 		countFlashing = 0;
 //		Debug.Log(isFlashing + " is first called");
