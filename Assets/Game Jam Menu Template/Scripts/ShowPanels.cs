@@ -9,6 +9,8 @@ public class ShowPanels : MonoBehaviour {
 	public GameObject pausePanel;							//Store a reference to the Game Object PausePanel 
 	public GameObject startButton;
 	public GameObject refreshButton;
+	public GameObject noAdsButton;
+	public GameObject askButton;
 
 
 	//Call this function to activate and display the Options panel during the main menu
@@ -33,10 +35,14 @@ public class ShowPanels : MonoBehaviour {
 		{
 			startButton.SetActive(false);
 			refreshButton.SetActive(true);
+			noAdsButton.SetActive(true);
+			askButton.SetActive(false);
 		}
 		else{
 			startButton.SetActive(true);
 			refreshButton.SetActive(false);
+			askButton.SetActive(true);
+			noAdsButton.SetActive(false);
 		}
 	}
 
