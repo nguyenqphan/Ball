@@ -15,14 +15,5 @@ public class PlayerMaterials : MonoBehaviour {
 	void Start () {
 		renderMaterial.material = materials[GameStateManager.Instance.TestIndex];
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-	int randomIndex()
-	{
-		return Random.Range(0, materials.Length);
-	}
 }
