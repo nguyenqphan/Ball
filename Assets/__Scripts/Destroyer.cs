@@ -16,7 +16,7 @@ public class Destroyer : MonoBehaviour {
 
 
 			if(showUI == null){
-				Debug.Log("ShowUI is null");
+//				Debug.Log("ShowUI is null");
 			showUI = GameObject.Find("UI").GetComponent<ShowPanels>();
 				showUI.ShowMenu();
 			}

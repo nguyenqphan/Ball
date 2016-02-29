@@ -35,11 +35,13 @@ public class Deactivator : MonoBehaviour {
 ////				Debug.Log(leftCube.tag);
 //			}
 
-			if(resetTime >= 9f && !isFlashing)
+
+
+			if(resetTime >= 8f && !isFlashing)
 			{
 				flashing.StartFlashing();
 				isFlashing = true;
-
+//				Debug.Log(resetTime);
 				//Debug.Log(isFlashing);
 			}
 

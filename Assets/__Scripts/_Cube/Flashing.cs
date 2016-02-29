@@ -7,6 +7,7 @@ public class Flashing : MonoBehaviour {
 	private float timeFlashing = 0f;
 	private float speedFlashing = 1f;
 	private int countFlashing;
+	private float flashtime;
 
 	// Use this for initialization
 	void Start () {
@@ -27,10 +28,11 @@ public class Flashing : MonoBehaviour {
 
 	public void StartFlashing()
 	{
+		flashtime = 0f;
 		countFlashing = 0;
 		isFlashing = true;
+		timeFlashing = 0;
 		StopAllCoroutines();
-		countFlashing = 0;
 //		Debug.Log(isFlashing + " is first called");
 		StartCoroutine(FlashingCube());
 	}
@@ -55,6 +57,8 @@ public class Flashing : MonoBehaviour {
 
 		while (isFlashing) 
 		{
+			flashtime += Time.deltaTime;
+			Debug.Log(flashtime);
 			Renderer[] meshes = gameObject.GetComponentsInChildren<Renderer> ();
 			timeFlashing += Time.deltaTime * speedFlashing;
 
@@ -95,7 +99,7 @@ public class Flashing : MonoBehaviour {
 					{
 						timeFlashing = 0f;	
 						countFlashing++;
-						Debug.Log(countFlashing +" countFlashing");
+//						Debug.Log(countFlashing +" countFlashing");
 					}
 				}
 //
