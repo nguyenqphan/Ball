@@ -75,7 +75,7 @@ public class StartOptions : MonoBehaviour {
 		GameStateManager.Instance.StartGame();
 		GameStateManager.Instance.Restart();
 //		GameStateManager.Instance.TestIndex++;
-		Debug.Log(GameStateManager.Instance.TestIndex);
+//		Debug.Log(GameStateManager.Instance.TestIndex);
 		LoadDelayed();																//Load Scene to play
 		//showPanels.HideMenu();
 
