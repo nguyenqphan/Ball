@@ -52,6 +52,9 @@ public class Diamond : MonoBehaviour {
 				gameObject.SetActive(false);
 				BreakingDiamond(gameObject);
 			}
+		}else{
+			if(collider.gameObject.CompareTag("LeftWall") || collider.gameObject.CompareTag("RightWall")) 			//Remove this code and tag when done with testing
+				diaDeactivate.resetTime = 0f;
 		}
 	}
 	

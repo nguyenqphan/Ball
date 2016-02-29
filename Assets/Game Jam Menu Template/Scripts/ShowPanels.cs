@@ -11,6 +11,7 @@ public class ShowPanels : MonoBehaviour {
 	public GameObject refreshButton;
 	public GameObject noAdsButton;
 	public GameObject askButton;
+	public GameObject fBshareButton;
 
 
 	//Call this function to activate and display the Options panel during the main menu
@@ -37,12 +38,15 @@ public class ShowPanels : MonoBehaviour {
 			refreshButton.SetActive(true);
 			noAdsButton.SetActive(true);
 			askButton.SetActive(false);
+			fBshareButton.SetActive(true);
+
 		}
 		else{
 			startButton.SetActive(true);
 			refreshButton.SetActive(false);
 			askButton.SetActive(true);
 			noAdsButton.SetActive(false);
+			fBshareButton.SetActive(false);
 		}
 	}
 
