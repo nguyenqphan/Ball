@@ -16,12 +16,12 @@ public class Destroyer : MonoBehaviour {
 
 
 			if(showUI == null){
-//				Debug.Log("ShowUI is null");
-				showUI = GameObject.Find("UI").GetComponent<ShowPanels>() as ShowPanels;
+				Debug.Log("ShowUI is null");
+			showUI = GameObject.Find("UI").GetComponent<ShowPanels>();
 				showUI.ShowMenu();
 			}
 			else if(showUI != null){
-//				Debug.Log("ShowUI is not null");
+				Debug.Log("ShowUI is not null");
 				showUI.ShowMenu();
 			}
 //			Debug.Log(collider.gameObject.tag);

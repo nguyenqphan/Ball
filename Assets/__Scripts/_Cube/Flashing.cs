@@ -80,7 +80,8 @@ public class Flashing : MonoBehaviour {
 
 //				Debug.Log(timeFlashing);
 //				Debug.Log(mesh.gameObject.tag);
-//
+//				
+			
 				mesh.material.shader = Shader.Find("Specular");			//Change the shader from Standard to LegacyShaders/Specular
 				if(timeFlashing < 0.4 && countFlashing < 3)
 				{
@@ -94,6 +95,7 @@ public class Flashing : MonoBehaviour {
 					{
 						timeFlashing = 0f;	
 						countFlashing++;
+						Debug.Log(countFlashing +" countFlashing");
 					}
 				}
 //

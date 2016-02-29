@@ -20,7 +20,12 @@ public class EventManager : MonoBehaviour {
 
 
 			if (collider.gameObject.tag == "Player") {
+
 			GameStateManager.HighScore++;
+//			Debug.Log(GameStateManager.HighScore);
+//			Debug.Log(gameObject.tag);
+//			Debug.Log(collider.gameObject.tag);
+//			Debug.Log(gameObject.transform.position);
 				if (OnCamMove != null) {
 					OnCamMove ();
 				}

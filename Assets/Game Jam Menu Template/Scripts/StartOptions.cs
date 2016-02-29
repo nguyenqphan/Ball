@@ -40,6 +40,7 @@ public class StartOptions : MonoBehaviour {
 
 		GameStateManager.Instance.IsStarted = true;						//keep loading the starting scene
 		GameStateManager.Instance.StartGame();
+//		Debug.Log(GameStateManager.HighScore);
 		GameStateManager.Instance.Restart();
 		//If changeMusicOnStart is true, fade out volume of music group of AudioMixer by calling FadeDown function of PlayMusic, using length of fadeColorAnimationClip as time. 
 		//To change fade time, change length of animation "FadeToColor"
@@ -68,11 +69,14 @@ public class StartOptions : MonoBehaviour {
 	}
 	public void RefleshButtonClicked()
 	{
-		showPanels.HideMenu();
+		//showPanels.HideMenu();
 
-		GameStateManager.Instance.IsStarted = true;						//keep loading the starting scene
+		GameStateManager.Instance.IsStarted = true;						
 		GameStateManager.Instance.StartGame();
 		GameStateManager.Instance.Restart();
+//		GameStateManager.Instance.TestIndex++;
+		Debug.Log(GameStateManager.Instance.TestIndex);
+		LoadDelayed();																//Load Scene to play
 		//showPanels.HideMenu();
 
 

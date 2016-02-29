@@ -26,7 +26,7 @@ public class GameStateManager : MonoBehaviour {
 		DontDestroyOnLoad(this);						// Persist through Scene loading
 	}
 
-	private int testIndex = 2;
+	private int testIndex = 0;
 	public int TestIndex{
 		get{return testIndex;}
 		set{testIndex = value;}
@@ -131,13 +131,18 @@ public class GameStateManager : MonoBehaviour {
 		}
 
 //		Debug.Log(IndexMaterial);
-
-		PlayerPrefs.SetInt("IndexGame", IndexMaterial);		//save the indexMateriasl
-		if(!GameStateManager.Instance.IsStarted){
-			SceneManager.LoadScene("StartingScene");
-		}
-		else{
-			SceneManager.LoadScene("FirstScene");			//Load scene
-		}
+//
+//		Debug.Log(GameStateManager.HighScore + "Score before loading the scene");
+//
+//		PlayerPrefs.SetInt("IndexGame", IndexMaterial);		//save the indexMateriasl
+//		if(!GameStateManager.Instance.IsStarted){
+//			SceneManager.LoadScene("StartingScene");
+//
+//		}
+//		else{
+//			SceneManager.LoadScene("FirstScene");			//Load scene
+//			Debug.Log(GameStateManager.HighScore + "Score after loading the scene");
+//			Time.timeScale = 0.1f;
+//		}
 	}
 }
