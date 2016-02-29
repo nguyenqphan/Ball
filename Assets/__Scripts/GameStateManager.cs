@@ -133,7 +133,7 @@ public class GameStateManager : MonoBehaviour {
 //		Debug.Log(IndexMaterial);
 
 		PlayerPrefs.SetInt("IndexGame", IndexMaterial);		//save the indexMateriasl
-		if(!isStarted){
+		if(!GameStateManager.Instance.IsStarted){
 			SceneManager.LoadScene("StartingScene");
 		}
 		else{
