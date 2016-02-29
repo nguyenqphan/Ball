@@ -8,6 +8,7 @@ public class Destroyer : MonoBehaviour {
 
 		if(collider.gameObject.tag == "Player")
 		{
+			GameStateManager.Instance.IsStarted = false;
 			collider.gameObject.SetActive(false);
 //			Debug.Log(collider.gameObject.tag);
 			GameStateManager.Instance.StartGame();

@@ -23,8 +23,7 @@ public class GameStateManager : MonoBehaviour {
 
 	void Awake()
 	{
-		// Persist through Scene loading
-		DontDestroyOnLoad(this);
+		DontDestroyOnLoad(this);						// Persist through Scene loading
 	}
 
 	private int testIndex = 2;
@@ -32,10 +31,9 @@ public class GameStateManager : MonoBehaviour {
 		get{return testIndex;}
 		set{testIndex = value;}
 	}
-
-
+		
 	//the score of the game
-	private int score;								//Score of the player		
+	private int score;									//Score of the player		
 	private int StartingScore = 0;						//score start at 0
 	private int? highScore;
 	public static bool ScoringLockout, highScorePending;
@@ -81,19 +79,13 @@ public class GameStateManager : MonoBehaviour {
 
 	private GameObject cube;
 
-
-	void OnEnable()
+	private bool isStarted = false;
+	public bool IsStarted
 	{
-
+		get{return isStarted;}
+		set{isStarted = value;}
 	}
-	
-	void OnDisable()
-	{
-
-	}
-
-
-
+		
 	// Use this for initialization
 	public void StartGame () {
 		HighScore = StartingScore;									//Reset the score every time the game starts
@@ -141,7 +133,11 @@ public class GameStateManager : MonoBehaviour {
 //		Debug.Log(IndexMaterial);
 
 		PlayerPrefs.SetInt("IndexGame", IndexMaterial);		//save the indexMateriasl
-		SceneManager.LoadScene("FirstScene");				//Load scene
-
+		if(!isStarted){
+			SceneManager.LoadScene("StartingScene");
+		}
+		else{
+			SceneManager.LoadScene("FirstScene");			//Load scene
+		}
 	}
 }
