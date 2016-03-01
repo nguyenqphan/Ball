@@ -14,8 +14,8 @@ public class UpdateScore : MonoBehaviour {
 	void Update () {
 		timerLabel.text = FormatTime(GameStateManager.Instance.BallTimer);
 		scoreLabel.text = GameStateManager.HighScore.ToString();
-		bestScoreLabel.text = GameStateManager.HighScore.ToString();
 		liveScoreLable.text = GameStateManager.HighScore.ToString();
+		bestScoreLabel.text = GameStateManager.Instance.BestScore.ToString();
 	}
 
 	private string FormatTime(float timeInSeconds)

@@ -19,6 +19,13 @@ public class Destroyer : MonoBehaviour {
 //				Debug.Log("ShowUI is null");
 			showUI = GameObject.Find("UI").GetComponent<ShowPanels>();
 				showUI.ShowMenu();
+				showUI.scaleText.SetActive(false);
+				GameStateManager.Instance.BestScore = PlayerPrefs.GetInt("CurBestScore");
+				if(GameStateManager.Instance.BestScore < GameStateManager.HighScore)
+				{
+					GameStateManager.Instance.BestScore = GameStateManager.HighScore;
+					PlayerPrefs.SetInt("CurBestScore", GameStateManager.Instance.BestScore);
+				}
 			}
 			else if(showUI != null){
 				Debug.Log("ShowUI is not null");

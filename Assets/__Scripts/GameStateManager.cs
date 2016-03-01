@@ -43,6 +43,15 @@ public class GameStateManager : MonoBehaviour {
 		set { Instance.highScore = value; }
 	}
 
+	private int bestScore = 0;
+	public int BestScore
+	{
+		get{return bestScore;}
+		set{bestScore = value;}
+	}
+
+
+
 	//The time life after the ball gets scaled
 	private float ballTimer = 3f;
 	private float clock = 3f;
@@ -93,6 +102,7 @@ public class GameStateManager : MonoBehaviour {
 		TimeRemaining = maxTime;
 		NumCoins = startCoints;
 		IndexMaterial = PlayerPrefs.GetInt("IndexGame");	//Get the indexMaterial that has been save in Restart()
+
 	}
 	
 	// Update is called once per frame
