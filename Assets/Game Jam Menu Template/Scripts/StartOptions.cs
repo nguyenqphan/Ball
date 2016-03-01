@@ -37,7 +37,7 @@ public class StartOptions : MonoBehaviour {
 
 	public void StartButtonClicked()
 	{
-
+		showPanels.gameTitleText.SetActive(false);
 		GameStateManager.Instance.IsStarted = true;						//keep loading the starting scene
 		GameStateManager.Instance.StartGame();
 //		Debug.Log(GameStateManager.HighScore);

@@ -15,6 +15,7 @@ public class ShowPanels : MonoBehaviour {
 	public GameObject scorePanel;
 	public GameObject liveScore;
 	public GameObject scaleText;
+	public GameObject gameTitleText;
 
 
 	//Call this function to activate and display the Options panel during the main menu
