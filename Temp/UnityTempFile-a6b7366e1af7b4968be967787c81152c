@@ -125,6 +125,7 @@
 'Assets/__Scripts/TestingScripts/GravityTest.cs'
 'Assets/__Scripts/TestingScripts/MoveTowadsTest.cs'
 'Assets/__Scripts/TestingScripts/TranPosTest.cs'
+'Assets/__Scripts/TextColor.cs'
 'Assets/__Scripts/UpdateScore.cs'
 'Assets/__Scripts/UpdateUI.cs'
 'Assets/__Scripts/WaterLerp.cs'
