@@ -26,7 +26,7 @@ public class GameStateManager : MonoBehaviour {
 		DontDestroyOnLoad(this);						// Persist through Scene loading
 	}
 
-	private int testIndex = 0;
+	private int testIndex = 8;
 	public int TestIndex{
 		get{return testIndex;}
 		set{testIndex = value;}
@@ -118,7 +118,7 @@ public class GameStateManager : MonoBehaviour {
 //			TestIndex = 0;
 //		}
 
-		TestIndex = 0;
+//		TestIndex = 1;
 
 		//Application.LoadLevel(Application.loadedLevel);
 		TimeRemaining = maxTime;
