@@ -26,7 +26,7 @@ public class GameStateManager : MonoBehaviour {
 		DontDestroyOnLoad(this);						// Persist through Scene loading
 	}
 
-	private int testIndex = 8;
+	private int testIndex = 0;
 	public int TestIndex{
 		get{return testIndex;}
 		set{testIndex = value;}

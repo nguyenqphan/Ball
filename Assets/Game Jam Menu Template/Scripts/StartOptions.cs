@@ -70,6 +70,14 @@ public class StartOptions : MonoBehaviour {
 	public void RefleshButtonClicked()
 	{
 		//showPanels.HideMenu();
+		if(GameStateManager.Instance.TestIndex < 8)
+		{
+			GameStateManager.Instance.TestIndex++;
+		}
+		else if(GameStateManager.Instance.TestIndex >= 8)
+		{
+			GameStateManager.Instance.TestIndex = 0;
+		}
 
 		GameStateManager.Instance.IsStarted = true;						
 		GameStateManager.Instance.StartGame();
