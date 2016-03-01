@@ -89,6 +89,7 @@
      <Compile Include="Assets\__Scripts\TestingScripts\GravityTest.cs" />
      <Compile Include="Assets\__Scripts\TestingScripts\MoveTowadsTest.cs" />
      <Compile Include="Assets\__Scripts\TestingScripts\TranPosTest.cs" />
+     <Compile Include="Assets\__Scripts\UpdateScore.cs" />
      <Compile Include="Assets\__Scripts\UpdateUI.cs" />
      <Compile Include="Assets\__Scripts\WaterLerp.cs" />
      <Compile Include="Assets\__Scripts\WaterMaterials.cs" />

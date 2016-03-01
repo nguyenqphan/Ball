@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerScaler : MonoBehaviour {
 
-	public GameObject timerText;
+	private ShowPanels showPanels;	
+//	public GameObject timerText;
 
 	private float scalingSpeed = 1f;
 	private float doubleSize = 2f;
@@ -16,6 +17,11 @@ public class PlayerScaler : MonoBehaviour {
 	void OnDisable()
 	{
 		Ball.Scalling -= StartScaling;
+	}
+
+	void Awake()
+	{
+		showPanels = GameObject.Find("UI").GetComponent<ShowPanels>();
 	}
 
 	// Use this for initialization
@@ -36,7 +42,8 @@ public class PlayerScaler : MonoBehaviour {
 		
 	IEnumerator ScalePlayer(GameObject other)
 	{
-		timerText.SetActive(true);											
+		showPanels.scaleText.SetActive(true);
+//		timerText.SetActive(true);											
 		while(transform.localScale.x < (other.gameObject.CompareTag("DoubleSize") ? doubleSize : oneHalf ))
 		{
 			float newScale = transform.localScale.x + Time.deltaTime * scalingSpeed ;
@@ -54,8 +61,8 @@ public class PlayerScaler : MonoBehaviour {
 			GameStateManager.Instance.BallTimer -= Time.deltaTime;
 			yield return 0;
 		}
-
-		timerText.SetActive(false);
+		showPanels.scaleText.SetActive(false);
+//		timerText.SetActive(false);
 		GameStateManager.Instance.BallTimer = 3f;
 		StartCoroutine(ScaleBack(other));
 	}

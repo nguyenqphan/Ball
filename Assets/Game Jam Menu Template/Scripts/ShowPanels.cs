@@ -12,6 +12,9 @@ public class ShowPanels : MonoBehaviour {
 	public GameObject noAdsButton;
 	public GameObject askButton;
 	public GameObject fBshareButton;
+	public GameObject scorePanel;
+	public GameObject liveScore;
+	public GameObject scaleText;
 
 
 	//Call this function to activate and display the Options panel during the main menu
@@ -39,6 +42,8 @@ public class ShowPanels : MonoBehaviour {
 			noAdsButton.SetActive(true);
 			askButton.SetActive(false);
 			fBshareButton.SetActive(true);
+			scorePanel.SetActive(true);
+			liveScore.SetActive(false);
 
 		}
 		else{
@@ -47,6 +52,8 @@ public class ShowPanels : MonoBehaviour {
 			askButton.SetActive(true);
 			noAdsButton.SetActive(false);
 			fBshareButton.SetActive(false);
+			scorePanel.SetActive(false);
+			liveScore.SetActive(true);
 		}
 	}
 

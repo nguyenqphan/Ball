@@ -78,7 +78,9 @@ public class StartOptions : MonoBehaviour {
 		{
 			GameStateManager.Instance.TestIndex = 0;
 		}
-
+		showPanels.liveScore.SetActive(true);
+		showPanels.scaleText.SetActive(false);
+		GameStateManager.Instance.BallTimer = 3f;
 		GameStateManager.Instance.IsStarted = true;						
 		GameStateManager.Instance.StartGame();
 		GameStateManager.Instance.Restart();

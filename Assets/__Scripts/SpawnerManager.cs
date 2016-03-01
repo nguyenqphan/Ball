@@ -189,7 +189,15 @@ public class SpawnerManager : MonoBehaviour {
 	}
 
 	Vector3 targetPosition(){
-		fixedY += -randomFixedY();
+
+		if(GameStateManager.Instance.IsStarted){
+			fixedY += -randomFixedY();
+		}else{
+			fixedY += - 5.5f;
+		}
+
+
+
 		//fixedY += -4.5f;
 		return new Vector3(fixedX, fixedY, 0f);
 	}
