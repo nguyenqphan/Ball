@@ -12,6 +12,7 @@ public class SpawnerManager : MonoBehaviour {
 	public GameObject diaEmissive;
 	public GameObject diaBreaking;
 	public GameObject ball;
+	public GameObject ballExplode;
 
 	private List<GameObject> cubeList;
 	private List<GameObject> particleList;
@@ -19,9 +20,10 @@ public class SpawnerManager : MonoBehaviour {
 	private List<GameObject> diaEmissiveList;
 	private List<GameObject> diaBreakingList;
 	private List<GameObject> ballList;
+	private List<GameObject> ballExplodeList;
 
 	private int pooledAmount = 5;
-	private int ballAmount = 1;
+	private int ballAmount = 2;
 
 	private int indexSwitch = 1;
 	private Vector3 leftOffset;
@@ -46,6 +48,7 @@ public class SpawnerManager : MonoBehaviour {
 		Deactivator.Emissive += PlayCubeEffect;
 		DiamondDeactivate.EmissiveDiamond += PlayerDiamondEmissive;
 		Diamond.BreakingDiamond += PlayDiamondBreaking;
+		Ball.ExplodeBall += PlayExplodeBall;
 	}
 
 	void OnDisable()
@@ -54,6 +57,7 @@ public class SpawnerManager : MonoBehaviour {
 		Deactivator.Emissive -= PlayCubeEffect;
 		DiamondDeactivate.EmissiveDiamond -= PlayerDiamondEmissive;
 		Diamond.BreakingDiamond -= PlayDiamondBreaking;
+		Ball.ExplodeBall -= PlayExplodeBall;
 	}
 		
 	void Start()
@@ -66,6 +70,7 @@ public class SpawnerManager : MonoBehaviour {
 		diaEmissiveList = new List<GameObject>();
 		diaBreakingList = new List<GameObject>();
 		ballList = new List<GameObject>();
+		ballExplodeList = new List<GameObject>();
 
 		for(int i = 0; i < pooledAmount; i++)
 		{
@@ -91,8 +96,14 @@ public class SpawnerManager : MonoBehaviour {
 		for(int j = 0; j < ballAmount; j++)
 		{
 			GameObject newBall = Instantiate(ball, transform.position, Quaternion.identity) as GameObject;
+			GameObject newBallExplode = Instantiate(ballExplode, transform.position, Quaternion.identity) as GameObject;
+
 			newBall.SetActive(false);
+			newBallExplode.SetActive(false);
+
+
 			ballList.Add(newBall);
+			ballExplodeList.Add(newBallExplode);
 		}
 	} 
 
@@ -101,6 +112,8 @@ public class SpawnerManager : MonoBehaviour {
 		spawnTime += Time.deltaTime * speedTime;
 		//Debug.Log(spawnTime);
 	}
+
+
 
 	public void PlayCubeEffect(GameObject o)
 	{
@@ -145,6 +158,27 @@ public class SpawnerManager : MonoBehaviour {
 			}
 		}
 
+		yield return 0;
+	}
+
+	public void PlayExplodeBall(GameObject o)
+	{
+		StartCoroutine(InstantiateBallExplode(o));
+	}
+
+	private IEnumerator InstantiateBallExplode(GameObject o)
+	{
+		for(int i = 0; i < ballExplodeList.Count; i++)
+		{
+			if(!ballExplodeList[i].activeInHierarchy)
+			{
+				ballExplodeList[i].transform.position = o.transform.position;
+				ballExplodeList[i].transform.rotation = o.transform.rotation;
+				ballExplodeList[i].SetActive(true);
+			}
+			break;
+		}
+			
 		yield return 0;
 	}
 

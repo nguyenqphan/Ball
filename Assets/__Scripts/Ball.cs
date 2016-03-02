@@ -5,6 +5,8 @@ public class Ball : MonoBehaviour {
 
 	public delegate void ActionScaling(GameObject gameObject);
 	public static event ActionScaling Scalling;
+	public delegate void ActionExplode(GameObject gameObject);
+	public static event ActionExplode ExplodeBall;
 	
 	private float movingSpeed = 20f;
 	private float scale = 0.5f;
@@ -17,6 +19,12 @@ public class Ball : MonoBehaviour {
 
 		if(other.gameObject.CompareTag("Player"))
 		{
+			gameObject.SetActive(false);
+			if(ExplodeBall!= null)
+			{
+				ExplodeBall(gameObject);
+			}
+				
 			if(Scalling != null)
 			{
 				if(gameObject.CompareTag("OneHalf"))
@@ -26,24 +34,18 @@ public class Ball : MonoBehaviour {
 				{
 					gameObject.tag = "OneHalf";
 				}
-				gameObject.SetActive(false);
+			
 				Scalling(gameObject);
 
 			}
+		}else if(other.gameObject.CompareTag("ComboCube")){
+			if(ExplodeBall != null)
+			{
+				gameObject.SetActive(false);
+				ExplodeBall(gameObject);
+			}
 		}
 	}
-
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 	public void MoveBall(Vector3 targetPos)
 	{

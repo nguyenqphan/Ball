@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerScaler : MonoBehaviour {
 
+
+
 	private ShowPanels showPanels;	
 //	public GameObject timerText;
 
@@ -33,6 +35,8 @@ public class PlayerScaler : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
 
 	public void StartScaling(GameObject other)
 	{
