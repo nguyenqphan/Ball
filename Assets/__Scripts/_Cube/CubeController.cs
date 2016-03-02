@@ -11,6 +11,14 @@ public class CubeController : MonoBehaviour {
 	private RaycastHit hit;                           // Store the hit object's properties
 	private float dirToRotate;                        // Rotate around the direction of Y
 
+	public AudioClip cubeClick;
+	private AudioSource cubeClickSource;
+
+	void Awake()
+	{
+		cubeClickSource = GetComponent<AudioSource>();
+	}
+
 	// Use this for initialization
 	void Start () {
 	
@@ -25,9 +33,10 @@ public class CubeController : MonoBehaviour {
 		if(rotating == false){
 
 			if(Input.GetButtonDown("Fire1")){												//Check if left mouse is clicked
-
+				cubeClickSource.PlayOneShot(cubeClick , 1f);
 				if(Physics.Raycast(ray, out hit, 100, cube.value))								//Check if the Raycast hit any cube in 100 unit from the camera
 				{
+					cubeClickSource.PlayOneShot(cubeClick , 1f);
 					Debug.Log(cube + "is the layermask value");
 					rotating = true;														//set rotating equal true, so that we can rotate the cube
 					Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 2f);          //Debug

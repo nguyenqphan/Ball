@@ -3,7 +3,14 @@ using System.Collections;
 
 public class CubeManager : MonoBehaviour {
 
-	public LayerMask cubeLayerMask;														//LayerMask for a raycast to hit
+	public LayerMask cubeLayerMask;				
+	public AudioClip cubeClick;
+	private AudioSource cubeClickSource;//LayerMask for a raycast to hit
+
+	void Awake()
+	{
+		cubeClickSource = GetComponent<AudioSource>();
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -15,6 +22,7 @@ public class CubeManager : MonoBehaviour {
 
 			if(Physics.Raycast(ray, out hit, 100f, cubeLayerMask))
 			{
+				cubeClickSource.PlayOneShot(cubeClick , .2f);
 				Cube cube = hit.collider.GetComponentInParent<Cube>();					//Get the cube component of the parent
 				if(hit.collider.tag == "RightCube")												
 					cube.RotateCube(1f);												//rotate clockwise

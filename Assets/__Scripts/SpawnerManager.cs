@@ -247,18 +247,18 @@ public class SpawnerManager : MonoBehaviour {
 	Vector3 diamondPos()
 	{
 		if(fixedX > 0)
-			return position + new Vector3(1.7f, 2.5f, 0f);
+			return position + new Vector3(1.5f, 2.5f, 0f);
 		else if(fixedX < 0)
-			return position + new Vector3(-1.7f, 2.5f, 0f);
+			return position + new Vector3(-1.5f, 2.5f, 0f);
 		return Vector3.zero;										//never reach this statement
 	}
 
 	Vector3 diamondPos2()
 	{
 		if(fixedX > 0)
-			return position + new Vector3(2.7f, 3.0f, 0f);
+			return position + new Vector3(2.5f, 3.0f, 0f);
 		else if(fixedX < 0)
-			return position + new Vector3(-2.7f, 3.0f, 0f);
+			return position + new Vector3(-2.5f, 3.0f, 0f);
 		return Vector3.zero;										//nver reach this statement
 	}
 
