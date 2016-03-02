@@ -53,7 +53,7 @@ public class GameStateManager : MonoBehaviour {
 
 
 	//The time life after the ball gets scaled
-	private float ballTimer = 3f;
+	private float ballTimer = 10f;
 	private float clock = 3f;
 	public float BallTimer
 	{

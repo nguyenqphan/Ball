@@ -8,6 +8,7 @@ public class PlayerScaler : MonoBehaviour {
 	private ShowPanels showPanels;	
 //	public GameObject timerText;
 
+	private float ballTime = 10f;
 	private float scalingSpeed = 1f;
 	private float doubleSize = 2f;
 	private float oneHalf = 1.5f;
@@ -67,7 +68,7 @@ public class PlayerScaler : MonoBehaviour {
 		}
 		showPanels.scaleText.SetActive(false);
 //		timerText.SetActive(false);
-		GameStateManager.Instance.BallTimer = 3f;
+		GameStateManager.Instance.BallTimer = ballTime;
 		StartCoroutine(ScaleBack(other));
 	}
 

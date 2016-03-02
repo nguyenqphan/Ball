@@ -12,7 +12,7 @@ public class Diamond : MonoBehaviour {
 
 	private float floatSpeed = 1f; // In cycles (up and down) per second
 
-	private float movementDistance = 0.5f; // The maximum distance the coin can move up and down
+	private float movementDistance = 2f; // The maximum distance the coin can move up and down
 	
 	private float startingY;
 	private bool isMovingUp = true;

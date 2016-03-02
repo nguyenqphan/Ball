@@ -22,13 +22,15 @@ public class SpawnerManager : MonoBehaviour {
 	private List<GameObject> ballList;
 	private List<GameObject> ballExplodeList;
 
-	private int pooledAmount = 5;
+	private int pooledAmount = 4;
 	private int ballAmount = 2;
+	private int diamondAmount = 8;
 
 	private int indexSwitch = 1;
 	private Vector3 leftOffset;
 	private Vector3 rightOeffet;
 	private Vector3 position;
+
 
 	private float fixedY = 4f;
 	private float fixedX;
@@ -40,6 +42,7 @@ public class SpawnerManager : MonoBehaviour {
 
 	private int spawnNumber = 0;
 	private int ballNumber;
+
 
 	void OnEnable()
 	{
@@ -76,18 +79,24 @@ public class SpawnerManager : MonoBehaviour {
 		{
 			GameObject newCube = Instantiate(cubeToInstantiate, transform.position, Quaternion.identity) as GameObject;
 			GameObject newParticle = Instantiate(cubeParticle, transform.position, Quaternion.identity) as GameObject;
+
+			newCube.SetActive(false);
+			newParticle.SetActive(false);
+
+			cubeList.Add(newCube);
+			particleList.Add(newParticle);
+		}
+
+		for(int i = 0; i < diamondAmount; i++)
+		{
 			GameObject newDiamond = Instantiate(diamond, transform.position, Quaternion.identity) as GameObject;
 			GameObject newDiaEmissive = Instantiate(diaEmissive, transform.position, Quaternion.identity) as GameObject;
 			GameObject newDiaBreaking = Instantiate(diaBreaking, transform.position, Quaternion.identity) as GameObject;
 
-			newCube.SetActive(false);
-			newParticle.SetActive(false);
 			newDiamond.SetActive(false);
 			newDiaEmissive.SetActive(false);
 			newDiaBreaking.SetActive(false);
 
-			cubeList.Add(newCube);
-			particleList.Add(newParticle);
 			diamondList.Add(newDiamond);
 			diaEmissiveList.Add(newDiaEmissive);
 			diaBreakingList.Add(newDiaBreaking);
@@ -100,7 +109,6 @@ public class SpawnerManager : MonoBehaviour {
 
 			newBall.SetActive(false);
 			newBallExplode.SetActive(false);
-
 
 			ballList.Add(newBall);
 			ballExplodeList.Add(newBallExplode);
@@ -245,6 +253,15 @@ public class SpawnerManager : MonoBehaviour {
 		return Vector3.zero;										//never reach this statement
 	}
 
+	Vector3 diamondPos2()
+	{
+		if(fixedX > 0)
+			return position + new Vector3(3f, 3.0f, 0f);
+		else if(fixedX < 0)
+			return position + new Vector3(-3f, 3.0f, 0f);
+		return Vector3.zero;										//nver reach this statement
+	}
+
 	Vector3 ballPos()
 	{
 			return position + new Vector3(0f, 1.5f, 0f );
@@ -276,7 +293,7 @@ public class SpawnerManager : MonoBehaviour {
 //			StartCoroutine(InstantiateBall());
 //		}
 		//Condition to instantiate a scalling ball
-		if(spawnNumber%2 == 0)
+		if(spawnNumber%5 == 0)
 		{
 			StartCoroutine(InstantiateBall());
 		}
@@ -325,7 +342,20 @@ public class SpawnerManager : MonoBehaviour {
 			}
 		}
 
-		yield return 0;
+		yield return new WaitForSeconds(0.5f);
+
+		for(int i = 0; i < diamondList.Count; i++)
+		{
+			if(!diamondList[i].activeInHierarchy)
+			{
+				diamondList[i].transform.position = transform.position;
+				diamondList[i].transform.rotation = Quaternion.Euler(270f, 0f, 0f);;
+				diamondList[i].SetActive(true);
+				Diamond diamondScript = diamondList[i].GetComponent<Diamond>();
+				diamondScript.MoveDiamond(diamondPos2());
+				break;
+			}
+		}
 	}
 
 	private IEnumerator InstantiateBall()
