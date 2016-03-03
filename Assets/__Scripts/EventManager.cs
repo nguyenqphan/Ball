@@ -3,24 +3,24 @@ using System.Collections;
 
 public class EventManager : MonoBehaviour {
 
-	//public GameObject player;
+
 
 	public delegate void EventAction();
 	public static event EventAction OnCamMove;
 //	public static event EventAction OnPlayerLeft;
 	public static event EventAction OnPlayerEnter;
 
-	void Update()
+	private SoundBreaking soundDropBall;
+
+	void Awake()
 	{
-		
+		soundDropBall = GameObject.Find("GameManager").GetComponent<SoundBreaking>();
 	}
 
 	void OnTriggerEnter(Collider collider)
 	{
-
-
 			if (collider.gameObject.tag == "Player") {
-
+			soundDropBall.PlayDropBall();
 			GameStateManager.HighScore++;
 //			Debug.Log(GameStateManager.HighScore);
 //			Debug.Log(gameObject.tag);

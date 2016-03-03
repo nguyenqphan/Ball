@@ -84,6 +84,7 @@
      <Compile Include="Assets\__Scripts\PlayerScaler.cs" />
      <Compile Include="Assets\__Scripts\Singleton.cs" />
      <Compile Include="Assets\__Scripts\SkyboxMaterials.cs" />
+     <Compile Include="Assets\__Scripts\SoundBreaking.cs" />
      <Compile Include="Assets\__Scripts\SpawnerManager.cs" />
      <Compile Include="Assets\__Scripts\TestingScripts\EventListenerTest.cs" />
      <Compile Include="Assets\__Scripts\TestingScripts\GravityTest.cs" />

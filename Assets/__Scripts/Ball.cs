@@ -7,18 +7,27 @@ public class Ball : MonoBehaviour {
 	public static event ActionScaling Scalling;
 	public delegate void ActionExplode(GameObject gameObject);
 	public static event ActionExplode ExplodeBall;
-	
+
+	private SoundBreaking ballExplodeClip;
+
+
 	private float movingSpeed = 20f;
 	private float scale = 0.5f;
 	private float startScale;
 	private bool isBigger = true;
 	private float scaleSpeed = 1f;
 
+	void Awake()
+	{
+		ballExplodeClip = GameObject.Find("GameManager").GetComponent<SoundBreaking>();
+	}
+
 
 	void OnTriggerEnter(Collider other){
 
 		if(other.gameObject.CompareTag("Player"))
 		{
+			ballExplodeClip.PlayExplodeBall();
 			gameObject.SetActive(false);
 			if(ExplodeBall!= null)
 			{

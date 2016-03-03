@@ -6,6 +6,8 @@ public class Diamond : MonoBehaviour {
 	public delegate void ActionBreaking(GameObject gameObject);
 	public static event ActionBreaking BreakingDiamond;
 
+	private SoundBreaking soundBreakingDiamond;
+
 	private bool isSpinning = true;
 	private bool isFloating = true;
 	private float movingSpeed = 20f;
@@ -21,6 +23,7 @@ public class Diamond : MonoBehaviour {
 	void Awake()
 	{
 		diaDeactivate = GetComponent<DiamondDeactivate>();
+		soundBreakingDiamond = GameObject.Find("GameManager").GetComponent<SoundBreaking>();
 	}
 	
 	// Use this for initialization
@@ -38,7 +41,7 @@ public class Diamond : MonoBehaviour {
 	{
 		if (collider.gameObject.CompareTag("Player"))
 		{
-
+			
 			Pickup();
 			if(BreakingDiamond != null)
 			{
@@ -60,6 +63,7 @@ public class Diamond : MonoBehaviour {
 	
 	private void Pickup()
 	{
+		soundBreakingDiamond.PlayBreakingDimond();
 		diaDeactivate.resetTime = 0f;
 		GameStateManager.HighScore++;
 		gameObject.SetActive(false);

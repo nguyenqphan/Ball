@@ -4,13 +4,19 @@ using System.Collections;
 public class Destroyer : MonoBehaviour {
 
 	private ShowPanels showUI;
+	private SoundBreaking soundBallDrop;
 
+	void Awake()
+	{
+		soundBallDrop = GameObject.Find("GameManager").GetComponent<SoundBreaking>();
+	}
 
 	void OnTriggerEnter(Collider collider)
 	{
 
 		if(collider.gameObject.tag == "Player")
 		{
+			soundBallDrop.PlayWaterSound();
 			GameStateManager.Instance.IsStarted = true;
 			collider.gameObject.SetActive(false);
 

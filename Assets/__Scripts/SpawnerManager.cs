@@ -293,7 +293,7 @@ public class SpawnerManager : MonoBehaviour {
 //			StartCoroutine(InstantiateBall());
 //		}
 		//Condition to instantiate a scalling ball
-		if(spawnNumber%5 == 0)
+		if(spawnNumber%2 == 0)
 		{
 			StartCoroutine(InstantiateBall());
 		}
