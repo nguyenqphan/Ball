@@ -17,9 +17,12 @@ public class Ball : MonoBehaviour {
 	private bool isBigger = true;
 	private float scaleSpeed = 1f;
 
+	private BallDeactivator ballDeactivator;
+
 	void Awake()
 	{
 		ballExplodeClip = GameObject.Find("GameManager").GetComponent<SoundBreaking>();
+		ballDeactivator = GetComponent<BallDeactivator>();
 	}
 
 
@@ -27,6 +30,7 @@ public class Ball : MonoBehaviour {
 
 		if(other.gameObject.CompareTag("Player"))
 		{
+			ballDeactivator.timeToLive = 0f;
 			ballExplodeClip.PlayExplodeBall();
 			gameObject.SetActive(false);
 			if(ExplodeBall!= null)
