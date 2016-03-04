@@ -24,7 +24,6 @@ public class StartOptions : MonoBehaviour {
 	private float fastFadeIn = .01f;									//Very short fade time (10 milliseconds) to start playing music immediately without a click/glitch
 	private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
 
-	
 	void Awake()
 	{
 		//Get a reference to ShowPanels attached to UI object
@@ -80,6 +79,7 @@ public class StartOptions : MonoBehaviour {
 			GameStateManager.Instance.TestIndex = 0;
 		}
 
+	
 
 		showPanels.liveScore.SetActive(true);
 		showPanels.scaleText.SetActive(false);

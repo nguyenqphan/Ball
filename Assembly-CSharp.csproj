@@ -67,6 +67,8 @@
      <Compile Include="Assets\Scripts\ScrollDetailTexture.cs" />
      <Compile Include="Assets\Scripts\ShowSliderValue.cs" />
      <Compile Include="Assets\Scripts\TiltWindow.cs" />
+     <Compile Include="Assets\WeatherDetecter.cs" />
+     <Compile Include="Assets\WeatherMan.cs" />
      <Compile Include="Assets\__Scripts\Ball.cs" />
      <Compile Include="Assets\__Scripts\CameraTracker.cs" />
      <Compile Include="Assets\__Scripts\ColorPalette.cs" />
