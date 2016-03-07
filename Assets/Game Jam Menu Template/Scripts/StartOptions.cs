@@ -36,7 +36,7 @@ public class StartOptions : MonoBehaviour {
 
 	public void StartButtonClicked()
 	{
-		GameStateManager.Instance.TestIndex = 0;
+		GameStateManager.Instance.TestIndex = 1;
 		showPanels.gameTitleText.SetActive(false);
 		GameStateManager.Instance.IsStarted = true;						//keep loading the starting scene
 		GameStateManager.Instance.StartGame();
@@ -67,15 +67,14 @@ public class StartOptions : MonoBehaviour {
 		}
 
 	}
-
 	public void RefleshButtonClicked()
 	{
 		//showPanels.HideMenu();
-		if(GameStateManager.Instance.TestIndex < 5)
+		if(GameStateManager.Instance.TestIndex < 8)
 		{
 			GameStateManager.Instance.TestIndex++;
 		}
-		else if(GameStateManager.Instance.TestIndex >=5)
+		else if(GameStateManager.Instance.TestIndex >= 8)
 		{
 			GameStateManager.Instance.TestIndex = 0;
 		}
