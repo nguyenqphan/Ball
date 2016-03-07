@@ -1,16 +1,24 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/Destroyer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/BallDeactivator.cs">
     <Files>
-      <File FileName="Assets/__Scripts/CameraTracker.cs" Line="78" Column="2" />
+      <File FileName="Assets/__Scripts/CameraTracker.cs" Line="1" Column="1" />
       <File FileName="Assets/__Scripts/Singleton.cs" Line="1" Column="1" />
       <File FileName="Assets/__Scripts/UpdateUI.cs" Line="17" Column="1" />
-      <File FileName="Assets/__Scripts/SpawnerManager.cs" Line="4" Column="1" />
-      <File FileName="Assets/__Scripts/Destroyer.cs" Line="20" Column="1" />
-      <File FileName="Assets/__Scripts/GameStateManager.cs" Line="93" Column="25" />
-      <File FileName="Assets/Game Jam Menu Template/Scripts/ShowPanels.cs" Line="45" Column="31" />
-      <File FileName="Assets/Game Jam Menu Template/Scripts/StartOptions.cs" Line="76" Column="5" />
+      <File FileName="Assets/__Scripts/SpawnerManager.cs" Line="80" Column="1" />
+      <File FileName="Assets/__Scripts/Destroyer.cs" Line="36" Column="28" />
+      <File FileName="Assets/__Scripts/GameStateManager.cs" Line="93" Column="3" />
+      <File FileName="Assets/Game Jam Menu Template/Scripts/ShowPanels.cs" Line="1" Column="1" />
+      <File FileName="Assets/Game Jam Menu Template/Scripts/StartOptions.cs" Line="39" Column="42" />
       <File FileName="Assets/__Scripts/PlayerScaler.cs" Line="39" Column="1" />
+      <File FileName="Assets/__Scripts/EventManager.cs" Line="19" Column="5" />
+      <File FileName="Assets/WeatherMan.cs" Line="27" Column="54" />
+      <File FileName="Assets/WeatherDetecter.cs" Line="37" Column="28" />
+      <File FileName="Assets/__Scripts/Ball.cs" Line="33" Column="36" />
+      <File FileName="Assets/__Scripts/Diamond.cs" Line="26" Column="1" />
+      <File FileName="Assets/__Scripts/TextColor.cs" Line="1" Column="1" />
+      <File FileName="Assets/__Scripts/Deactivator.cs" Line="1" Column="1" />
+      <File FileName="Assets/BallDeactivator.cs" Line="7" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
